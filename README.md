@@ -1,2 +1,0 @@
-# HerCorUniversalProducts
-A HCUP pages
