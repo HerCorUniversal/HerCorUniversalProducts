@@ -181,6 +181,39 @@
             transition: all 0.3s ease;
         }
         
+        /* Offers Banner */
+        .offers-banner {
+            background: linear-gradient(135deg, var(--primary-coral), var(--primary-orange));
+            padding: 0.8rem 2rem;
+            text-align: center;
+            position: fixed;
+            top: 82px;
+            width: 100%;
+            z-index: 999;
+            animation: pulse-banner 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-banner {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.9; }
+        }
+        
+        .offers-banner p {
+            font-weight: 600;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .offers-banner .highlight {
+            background: rgba(255,255,255,0.2);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            margin-left: 0.5rem;
+        }
+        
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -319,57 +352,74 @@
             50% { opacity: 0.3; }
         }
         
-        .price-badges {
+        .payment-options {
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
+            gap: 1.5rem;
             position: relative;
             z-index: 1;
         }
         
-        .price-badge {
+        .payment-option {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            padding: 1.2rem;
+            padding: 1.5rem;
             transition: all 0.3s ease;
             cursor: pointer;
         }
         
-        .price-badge:hover {
+        .payment-option:hover {
             background: rgba(255, 255, 255, 0.08);
             transform: translateX(10px);
             border-color: var(--primary-coral);
             box-shadow: 0 10px 30px rgba(231, 76, 60, 0.2);
         }
         
-        .price-icon {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background: var(--accent-gradient);
-            border-radius: 10px;
+        .payment-option.featured {
+            border-color: var(--primary-orange);
+            background: rgba(243, 156, 18, 0.1);
+        }
+        
+        .payment-option-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             margin-bottom: 0.8rem;
+        }
+        
+        .payment-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-gradient);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
         }
         
-        .price-amount {
-            font-size: 1.8rem;
+        .payment-title {
+            font-size: 1.2rem;
             font-weight: 700;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            display: block;
-            margin-bottom: 0.3rem;
+            font-family: 'Poppins', sans-serif;
         }
         
-        .price-label {
-            font-size: 0.85rem;
+        .payment-description {
+            font-size: 0.9rem;
             color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: var(--primary-green);
+            color: white;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
         }
         
         /* How it Works Section */
@@ -472,6 +522,221 @@
             line-height: 1.6;
         }
         
+        /* Payment Plans Section */
+        .payment-plans {
+            padding: 5rem 2rem;
+            position: relative;
+        }
+        
+        .plans-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .plan-card {
+            background: linear-gradient(135deg, var(--dark-card), rgba(26, 26, 26, 0.8));
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: var(--accent-gradient);
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border-color: var(--primary-coral);
+        }
+        
+        .plan-card.recommended {
+            border-color: var(--primary-orange);
+            transform: scale(1.02);
+        }
+        
+        .plan-card.recommended:hover {
+            transform: scale(1.02) translateY(-10px);
+        }
+        
+        .recommended-badge {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--primary-orange);
+            color: white;
+            padding: 0.5rem 3rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+        
+        .plan-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .plan-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .plan-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+        
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .plan-features li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--text-secondary);
+        }
+        
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+        
+        .plan-features li .check {
+            color: var(--primary-green);
+            font-size: 1.2rem;
+        }
+        
+        .plan-cta {
+            display: block;
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent-gradient);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .plan-cta:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
+        }
+        
+        /* Weekly Offers Section */
+        .weekly-offers {
+            padding: 5rem 2rem;
+            background: linear-gradient(180deg, transparent, rgba(26, 26, 26, 0.5), transparent);
+        }
+        
+        .offers-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .offer-card {
+            background: rgba(26, 26, 26, 0.6);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .offer-card::before {
+            content: '🔥 OFERTA';
+            position: absolute;
+            top: 15px;
+            left: -30px;
+            background: var(--primary-coral);
+            color: white;
+            padding: 0.3rem 2.5rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            transform: rotate(-45deg);
+        }
+        
+        .offer-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-orange);
+            box-shadow: 0 20px 40px rgba(243, 156, 18, 0.2);
+        }
+        
+        .offer-image {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .offer-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .offer-price {
+            margin: 1rem 0;
+        }
+        
+        .offer-price .weekly {
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .offer-price .period {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .offer-total {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .offer-btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--accent-gradient);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .offer-btn:hover {
+            transform: scale(1.05);
+        }
+        
         /* Features Section */
         .features {
             padding: 5rem 2rem;
@@ -540,66 +805,57 @@
             line-height: 1.8;
         }
         
-        /* Pricing Section */
-        .pricing {
-            padding: 5rem 2rem;
-            background: linear-gradient(180deg, transparent, rgba(26, 26, 26, 0.3), transparent);
-        }
-        
-        .pricing-container {
+        /* Credit Info Section */
+        .credit-info {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(155, 89, 182, 0.1), rgba(231, 76, 60, 0.1));
+            border-radius: 30px;
             max-width: 1000px;
-            margin: 0 auto;
+            margin: 0 auto 4rem;
         }
         
-        .pricing-table {
-            background: rgba(26, 26, 26, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            overflow: hidden;
-            margin-top: 3rem;
-        }
-        
-        .pricing-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .pricing-row:last-child {
-            border-bottom: none;
-        }
-        
-        .pricing-row:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .pricing-row.header {
-            background: var(--accent-gradient);
-        }
-        
-        .pricing-cell {
-            padding: 1.5rem 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .credit-info-content {
             text-align: center;
         }
         
-        .pricing-row.header .pricing-cell {
-            font-weight: 700;
-            font-size: 1.1rem;
+        .credit-info h3 {
             font-family: 'Poppins', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
         }
         
-        .pricing-cell.range {
-            border-right: 1px solid rgba(255, 255, 255, 0.1);
+        .credit-info p {
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
         }
         
-        .pricing-cell.commission {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: var(--primary-orange);
+        .credit-factors {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .credit-factor {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            min-width: 150px;
+        }
+        
+        .credit-factor-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .credit-factor-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
         }
         
         /* Contact Section */
@@ -739,13 +995,26 @@
                 font-size: 2rem;
             }
             
-            .pricing-row {
+            .plans-container {
                 grid-template-columns: 1fr;
             }
             
-            .pricing-cell.range {
-                border-right: none;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            .plan-card.recommended {
+                transform: none;
+            }
+            
+            .offers-banner {
+                top: 72px;
+                padding: 0.6rem 1rem;
+            }
+            
+            .offers-banner p {
+                font-size: 0.85rem;
+                flex-wrap: wrap;
+            }
+            
+            .hero {
+                padding-top: 8rem;
             }
         }
         
@@ -800,50 +1069,57 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#como-funciona">Cómo Funciona</a></li>
+                <li><a href="#planes">Planes de Pago</a></li>
+                
                 <li><a href="#ventajas">Ventajas</a></li>
-                <li><a href="#tarifas">Tarifas</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </div>
     </nav>
+    
+
     
     <!-- Hero Section -->
     <section class="hero" id="inicio">
         <div class="hero-content">
             <div class="hero-text">
                 <h1 class="hero-title">
-                    Tu Acceso al <br>
-                    <span class="gradient-text">Comercio Digital</span><br>
-                    Sin Límites
+                    Compra Ahora, <br>
+                    <span class="gradient-text">Paga a tu Ritmo</span><br>
+                    Sin Tarjetas
                 </h1>
                 <p class="hero-subtitle">
-                    En HerCor Universal Products hacemos posible que todos accedan a productos de Amazon y Mercado Libre, sin necesidad de tarjetas bancarias. ¡Compra lo que necesitas de manera fácil y segura!
+                    En HerCor Universal Products te damos acceso a productos de Amazon y Mercado Libre con pagos semanales a tu medida. ¡Elige pagar de contado o a plazos hasta 6 meses!
                 </p>
-                <a href="#contacto" class="cta-button">
-                    ¡Compra Ahora! 📦
+                <a href="#planes" class="cta-button">
+                    Ver Planes de Pago 💳
                 </a>
             </div>
             
             <div class="hero-visual">
                 <div class="floating-card">
                     <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem; font-family: 'Poppins', sans-serif;">
-                        💰 Nuestras Comisiones
+                        💰 Formas de Pago
                     </h3>
-                    <div class="price-badges">
-                        <div class="price-badge">
-                            <div class="price-icon">🛒</div>
-                            <span class="price-amount">$50 MXN</span>
-                            <span class="price-label">Compras menores a $700 MXN</span>
+                    <div class="payment-options">
+                        <div class="payment-option">
+                            <div class="payment-option-header">
+                                <div class="payment-icon">💵</div>
+                                <span class="payment-title">Pago de Contado</span>
+                                <span class="badge">+ $50 MXN</span>
+                            </div>
+                            <p class="payment-description">
+                                Paga el total del producto en un solo pago y solo cobramos una comisión de $50 MXN
+                            </p>
                         </div>
-                        <div class="price-badge">
-                            <div class="price-icon">📦</div>
-                            <span class="price-amount">$100 MXN</span>
-                            <span class="price-label">Compras de $700 a $1,000 MXN</span>
-                        </div>
-                        <div class="price-badge">
-                            <div class="price-icon">🎁</div>
-                            <span class="price-amount">$150 MXN</span>
-                            <span class="price-label">Compras mayores a $1,000 MXN</span>
+                        <div class="payment-option featured">
+                            <div class="payment-option-header">
+                                <div class="payment-icon">📅</div>
+                                <span class="payment-title">Pagos Semanales</span>
+                            </div>
+                            <p class="payment-description">
+                                Divide tu compra en pagos semanales hasta 6 meses. Intereses según tu historial crediticio
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -855,7 +1131,7 @@
     <section class="how-it-works" id="como-funciona">
         <div class="section-title">¿Cómo Funciona?</div>
         <p class="section-subtitle">
-            Facilitamos tu acceso a millones de productos en solo 4 pasos
+            Accede a millones de productos con pagos a tu medida
         </p>
         
         <div class="steps-container">
@@ -870,19 +1146,19 @@
             
             <div class="step-card scroll-reveal">
                 <div class="step-number">2</div>
-                <div class="step-icon">💬</div>
-                <h3 class="step-title">Contáctanos</h3>
+                <div class="step-icon">📋</div>
+                <h3 class="step-title">Evaluamos tu Crédito</h3>
                 <p class="step-description">
-                    Envíanos el enlace por WhatsApp o correo y te confirmaremos el precio total con nuestra comisión
+                    Revisamos tu historial crediticio para ofrecerte las mejores condiciones de pago semanal
                 </p>
             </div>
             
             <div class="step-card scroll-reveal">
                 <div class="step-number">3</div>
-                <div class="step-icon">💵</div>
-                <h3 class="step-title">Paga en Efectivo</h3>
+                <div class="step-icon">✍️</div>
+                <h3 class="step-title">Elige tu Plan</h3>
                 <p class="step-description">
-                    Visita nuestra tienda física y realiza el pago en efectivo. ¡Sin tarjetas, sin complicaciones!
+                    Selecciona entre pago de contado o pagos semanales hasta 6 meses según tu conveniencia
                 </p>
             </div>
             
@@ -891,11 +1167,84 @@
                 <div class="step-icon">📦</div>
                 <h3 class="step-title">Recibe tu Producto</h3>
                 <p class="step-description">
-                    Nosotros realizamos la compra y te avisamos cuando tu producto esté listo para recoger
+                    Nosotros realizamos la compra y te avisamos cuando esté listo para recoger. ¡Paga semana a semana!
                 </p>
             </div>
         </div>
     </section>
+    
+    <!-- Payment Plans Section -->
+    <section class="payment-plans" id="planes">
+        <div class="section-title">Planes de Pago</div>
+        <p class="section-subtitle">
+            Elige la opción que mejor se adapte a ti
+        </p>
+        
+        <div class="plans-container">
+            <div class="plan-card scroll-reveal">
+                <div class="plan-icon">💵</div>
+                <h3 class="plan-title">Pago de Contado</h3>
+                <p class="plan-subtitle">Un solo pago, sin complicaciones</p>
+                
+                <ul class="plan-features">
+                    <li><span class="check">✓</span> Paga el total del producto</li>
+                    <li><span class="check">✓</span> Comisión única de $50 MXN</li>
+                    <li><span class="check">✓</span> Sin intereses</li>
+                    <li><span class="check">✓</span> Recibe tu producto de inmediato</li>
+                    <li><span class="check">✓</span> Ideal para compras rápidas</li>
+                </ul>
+                
+                <a href="#contacto" class="plan-cta">Comprar de Contado</a>
+            </div>
+            
+            <div class="plan-card recommended scroll-reveal">
+                <div class="recommended-badge">POPULAR</div>
+                <div class="plan-icon">📅</div>
+                <h3 class="plan-title">Pagos Semanales</h3>
+                <p class="plan-subtitle">Divide tu compra hasta en 6 meses</p>
+                
+                <ul class="plan-features">
+                    <li><span class="check">✓</span> Pagos semanales accesibles</li>
+                    <li><span class="check">✓</span> Plazos de 1 a 6 meses</li>
+                    <li><span class="check">✓</span> Interés según historial crediticio</li>
+                    <li><span class="check">✓</span> Sin necesidad de tarjeta bancaria</li>
+                    <li><span class="check">✓</span> Construye tu historial con nosotros</li>
+                </ul>
+                
+                <a href="#contacto" class="plan-cta">Solicitar Crédito</a>
+            </div>
+        </div>
+        
+        <!-- Credit Info -->
+        <div class="credit-info scroll-reveal">
+            <div class="credit-info-content">
+                <h3>📊 ¿Cómo se determina tu tasa de interés?</h3>
+                <p>
+                    Tu tasa de interés se calcula de forma personalizada basándose en tu historial crediticio. 
+                    Entre mejor sea tu historial, mejores condiciones obtendrás. ¡Construye tu crédito con nosotros!
+                </p>
+                <div class="credit-factors">
+                    <div class="credit-factor">
+                        <div class="credit-factor-icon">📈</div>
+                        <div class="credit-factor-text">Historial de pagos</div>
+                    </div>
+                    <div class="credit-factor">
+                        <div class="credit-factor-icon">⏰</div>
+                        <div class="credit-factor-text">Antigüedad crediticia</div>
+                    </div>
+                    <div class="credit-factor">
+                        <div class="credit-factor-icon">💳</div>
+                        <div class="credit-factor-text">Compromisos actuales</div>
+                    </div>
+                    <div class="credit-factor">
+                        <div class="credit-factor-icon">✅</div>
+                        <div class="credit-factor-text">Pagos puntuales</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     
     <!-- Features Section -->
     <section class="features" id="ventajas">
@@ -909,31 +1258,31 @@
                 <span class="feature-icon">🚫💳</span>
                 <h3 class="feature-title">Sin Tarjetas Bancarias</h3>
                 <p class="feature-description">
-                    No necesitas cuenta bancaria ni tarjetas de crédito/débito. Paga en efectivo directamente en nuestra tienda.
+                    No necesitas cuenta bancaria ni tarjetas. Paga en efectivo directamente en nuestra tienda cada semana.
                 </p>
             </div>
             
             <div class="feature-card scroll-reveal">
-                <span class="feature-icon">🌐</span>
-                <h3 class="feature-title">Acceso Universal</h3>
+                <span class="feature-icon">📅</span>
+                <h3 class="feature-title">Pagos Semanales Flexibles</h3>
                 <p class="feature-description">
-                    Te damos acceso a millones de productos de Amazon y Mercado Libre que antes no podías comprar.
+                    Divide tus compras en pagos semanales cómodos. Plazos desde 1 hasta 6 meses según tu preferencia.
                 </p>
             </div>
             
             <div class="feature-card scroll-reveal">
-                <span class="feature-icon">✅</span>
-                <h3 class="feature-title">100% Seguro</h3>
+                <span class="feature-icon">📊</span>
+                <h3 class="feature-title">Construye tu Crédito</h3>
                 <p class="feature-description">
-                    Realizamos todas las compras de manera segura y te entregamos exactamente lo que pediste.
+                    Cada pago puntual mejora tu historial con nosotros, obteniendo mejores tasas en futuras compras.
                 </p>
             </div>
             
             <div class="feature-card scroll-reveal">
-                <span class="feature-icon">💰</span>
-                <h3 class="feature-title">Precios Transparentes</h3>
+                <span class="feature-icon">🎁</span>
+                <h3 class="feature-title">Ofertas Semanales</h3>
                 <p class="feature-description">
-                    Comisiones claras y sencillas según el monto de tu compra. Sin costos ocultos ni sorpresas.
+                    Cada semana tenemos nuevas ofertas exclusivas con precios especiales y promociones únicas.
                 </p>
             </div>
             
@@ -941,7 +1290,7 @@
                 <span class="feature-icon">🏪</span>
                 <h3 class="feature-title">Tienda Física</h3>
                 <p class="feature-description">
-                    Contamos con una ubicación física donde puedes visitarnos, pagar y recoger tus productos.
+                    Visítanos en nuestra tienda física para realizar tus pagos semanales y recoger tus productos.
                 </p>
             </div>
             
@@ -949,37 +1298,8 @@
                 <span class="feature-icon">👥</span>
                 <h3 class="feature-title">Atención Personalizada</h3>
                 <p class="feature-description">
-                    Te asesoramos en todo el proceso y resolvemos cualquier duda que tengas sobre tu compra.
+                    Te asesoramos para encontrar el mejor plan de pagos según tu situación y necesidades.
                 </p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Pricing Section -->
-    <section class="pricing" id="tarifas">
-        <div class="pricing-container">
-            <h2 class="section-title">Nuestras Tarifas</h2>
-            <p class="section-subtitle">
-                Comisiones transparentes y accesibles para todos
-            </p>
-            
-            <div class="pricing-table scroll-reveal">
-                <div class="pricing-row header">
-                    <div class="pricing-cell range">Monto de Compra</div>
-                    <div class="pricing-cell">Comisión</div>
-                </div>
-                <div class="pricing-row">
-                    <div class="pricing-cell range">Menor a $700 MXN</div>
-                    <div class="pricing-cell commission">$50 MXN</div>
-                </div>
-                <div class="pricing-row">
-                    <div class="pricing-cell range">De $700 a $1,000 MXN</div>
-                    <div class="pricing-cell commission">$100 MXN</div>
-                </div>
-                <div class="pricing-row">
-                    <div class="pricing-cell range">Mayor a $1,000 MXN</div>
-                    <div class="pricing-cell commission">$150 MXN</div>
-                </div>
             </div>
         </div>
     </section>
@@ -1031,6 +1351,9 @@
         <p class="footer-text" style="margin-top: 1rem; font-size: 0.8rem;">
             Tu puente confiable al comercio digital en México 🇲🇽
         </p>
+        <p class="footer-text" style="margin-top: 0.5rem; font-size: 0.75rem; opacity: 0.7;">
+            * Los intereses y plazos están sujetos a evaluación crediticia individual
+        </p>
     </footer>
     
     <script>
@@ -1079,16 +1402,6 @@
             observer.observe(el);
         });
         
-        // Add hover effect to cards
-        document.querySelectorAll('.price-badge, .step-card, .feature-card, .contact-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = this.style.transform + ' scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = this.style.transform.replace(' scale(1.02)', '');
-            });
-        });
     </script>
 </body>
 </html>
