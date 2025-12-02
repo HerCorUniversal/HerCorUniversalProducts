@@ -181,39 +181,6 @@
             transition: all 0.3s ease;
         }
         
-        /* Offers Banner */
-        .offers-banner {
-            background: linear-gradient(135deg, var(--primary-coral), var(--primary-orange));
-            padding: 0.8rem 2rem;
-            text-align: center;
-            position: fixed;
-            top: 82px;
-            width: 100%;
-            z-index: 999;
-            animation: pulse-banner 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulse-banner {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.9; }
-        }
-        
-        .offers-banner p {
-            font-weight: 600;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-        
-        .offers-banner .highlight {
-            background: rgba(255,255,255,0.2);
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            margin-left: 0.5rem;
-        }
-        
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -420,6 +387,17 @@
             font-size: 0.75rem;
             font-weight: 600;
             margin-left: 0.5rem;
+        }
+        
+        .day-badge {
+            display: inline-block;
+            background: var(--primary-blue);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 0.8rem;
         }
         
         /* How it Works Section */
@@ -642,105 +620,10 @@
             box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
         }
         
-        /* Weekly Offers Section */
-        .weekly-offers {
-            padding: 5rem 2rem;
-            background: linear-gradient(180deg, transparent, rgba(26, 26, 26, 0.5), transparent);
-        }
-        
-        .offers-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-        
-        .offer-card {
-            background: rgba(26, 26, 26, 0.6);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .offer-card::before {
-            content: '🔥 OFERTA';
-            position: absolute;
-            top: 15px;
-            left: -30px;
-            background: var(--primary-coral);
-            color: white;
-            padding: 0.3rem 2.5rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            transform: rotate(-45deg);
-        }
-        
-        .offer-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-orange);
-            box-shadow: 0 20px 40px rgba(243, 156, 18, 0.2);
-        }
-        
-        .offer-image {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-        
-        .offer-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        .offer-price {
-            margin: 1rem 0;
-        }
-        
-        .offer-price .weekly {
-            font-size: 2rem;
-            font-weight: 700;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .offer-price .period {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        
-        .offer-total {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-        }
-        
-        .offer-btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            background: var(--accent-gradient);
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-        }
-        
-        .offer-btn:hover {
-            transform: scale(1.05);
-        }
-        
         /* Features Section */
         .features {
             padding: 5rem 2rem;
-            position: relative;
+            background: linear-gradient(180deg, transparent, rgba(26, 26, 26, 0.5), transparent);
         }
         
         .features-grid {
@@ -805,63 +688,9 @@
             line-height: 1.8;
         }
         
-        /* Credit Info Section */
-        .credit-info {
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, rgba(155, 89, 182, 0.1), rgba(231, 76, 60, 0.1));
-            border-radius: 30px;
-            max-width: 1000px;
-            margin: 0 auto 4rem;
-        }
-        
-        .credit-info-content {
-            text-align: center;
-        }
-        
-        .credit-info h3 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-        
-        .credit-info p {
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            line-height: 1.8;
-        }
-        
-        .credit-factors {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        
-        .credit-factor {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 1.5rem 2rem;
-            text-align: center;
-            min-width: 150px;
-        }
-        
-        .credit-factor-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-        
-        .credit-factor-text {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-        
         /* Contact Section */
         .contact {
             padding: 5rem 2rem;
-            background: linear-gradient(180deg, transparent, rgba(26, 26, 26, 0.5));
         }
         
         .contact-container {
@@ -1003,16 +832,6 @@
                 transform: none;
             }
             
-            .offers-banner {
-                top: 72px;
-                padding: 0.6rem 1rem;
-            }
-            
-            .offers-banner p {
-                font-size: 0.85rem;
-                flex-wrap: wrap;
-            }
-            
             .hero {
                 padding-top: 8rem;
             }
@@ -1070,14 +889,11 @@
                 <li><a href="#inicio">Inicio</a></li>
                 <li><a href="#como-funciona">Cómo Funciona</a></li>
                 <li><a href="#planes">Planes de Pago</a></li>
-                
                 <li><a href="#ventajas">Ventajas</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </div>
     </nav>
-    
-
     
     <!-- Hero Section -->
     <section class="hero" id="inicio">
@@ -1118,8 +934,9 @@
                                 <span class="payment-title">Pagos Semanales</span>
                             </div>
                             <p class="payment-description">
-                                Divide tu compra en pagos semanales hasta 6 meses. Intereses según tu historial crediticio
+                                Divide tu compra en pagos semanales hasta 6 meses con tasa preferencial. Solicita tu formulario de crédito por WhatsApp.
                             </p>
+                            <span class="day-badge">📆 Abonos recomendados cada Lunes</span>
                         </div>
                     </div>
                 </div>
@@ -1147,9 +964,9 @@
             <div class="step-card scroll-reveal">
                 <div class="step-number">2</div>
                 <div class="step-icon">📋</div>
-                <h3 class="step-title">Evaluamos tu Crédito</h3>
+                <h3 class="step-title">Llena el Formulario</h3>
                 <p class="step-description">
-                    Revisamos tu historial crediticio para ofrecerte las mejores condiciones de pago semanal
+                    Escríbenos por WhatsApp y te enviaremos el formulario de crédito para completar tu solicitud
                 </p>
             </div>
             
@@ -1165,9 +982,9 @@
             <div class="step-card scroll-reveal">
                 <div class="step-number">4</div>
                 <div class="step-icon">📦</div>
-                <h3 class="step-title">Recibe tu Producto</h3>
+                <h3 class="step-title">Recibe y Abona</h3>
                 <p class="step-description">
-                    Nosotros realizamos la compra y te avisamos cuando esté listo para recoger. ¡Paga semana a semana!
+                    Recoge tu producto y realiza tus abonos (recomendamos los lunes) en nuestra tienda física
                 </p>
             </div>
         </div>
@@ -1189,7 +1006,7 @@
                 <ul class="plan-features">
                     <li><span class="check">✓</span> Paga el total del producto</li>
                     <li><span class="check">✓</span> Comisión única de $50 MXN</li>
-                    <li><span class="check">✓</span> Sin intereses</li>
+                    <li><span class="check">✓</span> Sin tasa adicional</li>
                     <li><span class="check">✓</span> Recibe tu producto de inmediato</li>
                     <li><span class="check">✓</span> Ideal para compras rápidas</li>
                 </ul>
@@ -1206,45 +1023,16 @@
                 <ul class="plan-features">
                     <li><span class="check">✓</span> Pagos semanales accesibles</li>
                     <li><span class="check">✓</span> Plazos de 1 a 6 meses</li>
-                    <li><span class="check">✓</span> Interés según historial crediticio</li>
+                    <li><span class="check">✓</span> Tasa preferencial</li>
+                    <li><span class="check">✓</span> Abonos recomendados cada lunes</li>
                     <li><span class="check">✓</span> Sin necesidad de tarjeta bancaria</li>
-                    <li><span class="check">✓</span> Construye tu historial con nosotros</li>
+                    <li><span class="check">✓</span> Formulario de crédito por WhatsApp</li>
                 </ul>
                 
-                <a href="#contacto" class="plan-cta">Solicitar Crédito</a>
-            </div>
-        </div>
-        
-        <!-- Credit Info -->
-        <div class="credit-info scroll-reveal">
-            <div class="credit-info-content">
-                <h3>📊 ¿Cómo se determina tu tasa de interés?</h3>
-                <p>
-                    Tu tasa de interés se calcula de forma personalizada basándose en tu historial crediticio. 
-                    Entre mejor sea tu historial, mejores condiciones obtendrás. ¡Construye tu crédito con nosotros!
-                </p>
-                <div class="credit-factors">
-                    <div class="credit-factor">
-                        <div class="credit-factor-icon">📈</div>
-                        <div class="credit-factor-text">Historial de pagos</div>
-                    </div>
-                    <div class="credit-factor">
-                        <div class="credit-factor-icon">⏰</div>
-                        <div class="credit-factor-text">Antigüedad crediticia</div>
-                    </div>
-                    <div class="credit-factor">
-                        <div class="credit-factor-icon">💳</div>
-                        <div class="credit-factor-text">Compromisos actuales</div>
-                    </div>
-                    <div class="credit-factor">
-                        <div class="credit-factor-icon">✅</div>
-                        <div class="credit-factor-text">Pagos puntuales</div>
-                    </div>
-                </div>
+                <a href="https://wa.me/524941127160?text=Hola,%20me%20interesa%20solicitar%20un%20crédito.%20¿Me%20pueden%20enviar%20el%20formulario?" class="plan-cta">Solicitar Formulario 📝</a>
             </div>
         </div>
     </section>
-    
     
     <!-- Features Section -->
     <section class="features" id="ventajas">
@@ -1258,7 +1046,7 @@
                 <span class="feature-icon">🚫💳</span>
                 <h3 class="feature-title">Sin Tarjetas Bancarias</h3>
                 <p class="feature-description">
-                    No necesitas cuenta bancaria ni tarjetas. Paga en efectivo directamente en nuestra tienda cada semana.
+                    No necesitas cuenta bancaria ni tarjetas. Paga en efectivo directamente en nuestra tienda.
                 </p>
             </div>
             
@@ -1271,18 +1059,18 @@
             </div>
             
             <div class="feature-card scroll-reveal">
-                <span class="feature-icon">📊</span>
-                <h3 class="feature-title">Construye tu Crédito</h3>
+                <span class="feature-icon">💰</span>
+                <h3 class="feature-title">Tasa Preferencial</h3>
                 <p class="feature-description">
-                    Cada pago puntual mejora tu historial con nosotros, obteniendo mejores tasas en futuras compras.
+                    Te ofrecemos tasas preferenciales para que puedas adquirir lo que necesitas de manera accesible.
                 </p>
             </div>
             
             <div class="feature-card scroll-reveal">
-                <span class="feature-icon">🎁</span>
-                <h3 class="feature-title">Ofertas Semanales</h3>
+                <span class="feature-icon">📆</span>
+                <h3 class="feature-title">Abonos los Lunes</h3>
                 <p class="feature-description">
-                    Cada semana tenemos nuevas ofertas exclusivas con precios especiales y promociones únicas.
+                    Recomendamos realizar tus abonos los días lunes para mejor organización de tus finanzas.
                 </p>
             </div>
             
@@ -1290,7 +1078,7 @@
                 <span class="feature-icon">🏪</span>
                 <h3 class="feature-title">Tienda Física</h3>
                 <p class="feature-description">
-                    Visítanos en nuestra tienda física para realizar tus pagos semanales y recoger tus productos.
+                    Visítanos en nuestra tienda física para realizar tus abonos semanales y recoger tus productos.
                 </p>
             </div>
             
@@ -1327,6 +1115,9 @@
                     <a href="https://wa.me/524941127160" class="contact-info">
                         +52 494 112 7160
                     </a>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                        📝 Solicita tu formulario de crédito aquí
+                    </p>
                 </div>
                 
                 <div class="contact-card">
@@ -1350,9 +1141,6 @@
         </p>
         <p class="footer-text" style="margin-top: 1rem; font-size: 0.8rem;">
             Tu puente confiable al comercio digital en México 🇲🇽
-        </p>
-        <p class="footer-text" style="margin-top: 0.5rem; font-size: 0.75rem; opacity: 0.7;">
-            * Los intereses y plazos están sujetos a evaluación crediticia individual
         </p>
     </footer>
     
@@ -1401,7 +1189,6 @@
         document.querySelectorAll('.scroll-reveal').forEach(el => {
             observer.observe(el);
         });
-        
     </script>
 </body>
 </html>
