@@ -1,1194 +1,501 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HerCor Universal Products - Tu Puente al Comercio Digital</title>
-    
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Inter:wght@400;500;600&display=swap');
-        
-        :root {
-            --primary-purple: #9B59B6;
-            --primary-coral: #E74C3C;
-            --primary-teal: #1ABC9C;
-            --primary-orange: #F39C12;
-            --primary-blue: #3498DB;
-            --primary-green: #27AE60;
-            --dark-bg: #0F0F0F;
-            --dark-card: #1A1A1A;
-            --light-text: #FFFFFF;
-            --text-secondary: #B0B0B0;
-            --accent-gradient: linear-gradient(135deg, #9B59B6, #E74C3C, #F39C12);
-            --glow-purple: rgba(155, 89, 182, 0.4);
-            --glow-coral: rgba(231, 76, 60, 0.4);
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--light-text);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-        
-        /* Animated Background */
-        .bg-animation {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            background: var(--dark-bg);
-            overflow: hidden;
-        }
-        
-        .bg-animation::before {
-            content: '';
-            position: absolute;
-            width: 150%;
-            height: 150%;
-            top: -25%;
-            left: -25%;
-            background: 
-                radial-gradient(circle at 20% 50%, var(--primary-purple) 0%, transparent 40%),
-                radial-gradient(circle at 80% 80%, var(--primary-coral) 0%, transparent 40%),
-                radial-gradient(circle at 40% 20%, var(--primary-teal) 0%, transparent 40%),
-                radial-gradient(circle at 70% 40%, var(--primary-orange) 0%, transparent 30%);
-            opacity: 0.06;
-            animation: bgRotate 30s linear infinite;
-        }
-        
-        @keyframes bgRotate {
-            from { transform: rotate(0deg) scale(1.2); }
-            to { transform: rotate(360deg) scale(1.2); }
-        }
-        
-        /* Navigation */
-        nav {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(20px);
-            background: rgba(15, 15, 15, 0.9);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            animation: slideDown 0.6s ease-out;
-        }
-        
-        @keyframes slideDown {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-        
-        .logo-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-        
-        .logo-text {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-        
-        .logo-text .her {
-            color: var(--primary-coral);
-        }
-        
-        .logo-text .cor {
-            color: var(--primary-orange);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-        
-        .nav-links a {
-            color: var(--light-text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-gradient);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover {
-            color: var(--primary-coral);
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        /* Mobile Menu Button */
-        .mobile-menu-btn {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            padding: 10px;
-        }
-        
-        .mobile-menu-btn span {
-            width: 25px;
-            height: 3px;
-            background: var(--light-text);
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-        
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 6rem 2rem 4rem;
-            position: relative;
-        }
-        
-        .hero-content {
-            max-width: 1200px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .hero-text {
-            animation: fadeInLeft 1s ease-out;
-        }
-        
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .hero-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-        
-        .gradient-text {
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            padding: 1.2rem 3rem;
-            background: linear-gradient(135deg, var(--primary-coral), var(--primary-orange));
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
-        }
-        
-        .cta-button:hover::before {
-            left: 100%;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(231, 76, 60, 0.4);
-        }
-        
-        .hero-visual {
-            animation: fadeInRight 1s ease-out;
-        }
-        
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        .floating-card {
-            background: linear-gradient(135deg, var(--dark-card), rgba(26, 26, 26, 0.8));
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2.5rem;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
-            animation: float 6s ease-in-out infinite;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .floating-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, var(--glow-purple) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-        
-        @keyframes pulse {
-            0%, 100% { opacity: 0.1; }
-            50% { opacity: 0.3; }
-        }
-        
-        .payment-options {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .payment-option {
-            background: rgba(255, 255, 255, 0.05);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 1.5rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .payment-option:hover {
-            background: rgba(255, 255, 255, 0.08);
-            transform: translateX(10px);
-            border-color: var(--primary-coral);
-            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.2);
-        }
-        
-        .payment-option.featured {
-            border-color: var(--primary-orange);
-            background: rgba(243, 156, 18, 0.1);
-        }
-        
-        .payment-option-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 0.8rem;
-        }
-        
-        .payment-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--accent-gradient);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-        
-        .payment-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .payment-description {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-        
-        .badge {
-            display: inline-block;
-            background: var(--primary-green);
-            color: white;
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-left: 0.5rem;
-        }
-        
-        .day-badge {
-            display: inline-block;
-            background: var(--primary-blue);
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-top: 0.8rem;
-        }
-        
-        /* How it Works Section */
-        .how-it-works {
-            padding: 5rem 2rem;
-            background: linear-gradient(180deg, transparent, rgba(26, 26, 26, 0.5), transparent);
-            position: relative;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-secondary);
-            margin-bottom: 4rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .steps-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-        }
-        
-        .step-card {
-            background: rgba(26, 26, 26, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .step-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at center, var(--glow-coral) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .step-card:hover::before {
-            opacity: 0.1;
-        }
-        
-        .step-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-coral);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        .step-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: var(--accent-gradient);
-            border-radius: 50%;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: white;
-        }
-        
-        .step-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .step-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .step-description {
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-        
-        /* Payment Plans Section */
-        .payment-plans {
-            padding: 5rem 2rem;
-            position: relative;
-        }
-        
-        .plans-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-        
-        .plan-card {
-            background: linear-gradient(135deg, var(--dark-card), rgba(26, 26, 26, 0.8));
-            border: 2px solid rgba(255, 255, 255, 0.1);
-            border-radius: 25px;
-            padding: 2.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .plan-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: var(--accent-gradient);
-        }
-        
-        .plan-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
-            border-color: var(--primary-coral);
-        }
-        
-        .plan-card.recommended {
-            border-color: var(--primary-orange);
-            transform: scale(1.02);
-        }
-        
-        .plan-card.recommended:hover {
-            transform: scale(1.02) translateY(-10px);
-        }
-        
-        .recommended-badge {
-            position: absolute;
-            top: 20px;
-            right: -35px;
-            background: var(--primary-orange);
-            color: white;
-            padding: 0.5rem 3rem;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transform: rotate(45deg);
-        }
-        
-        .plan-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .plan-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-        
-        .plan-subtitle {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            font-size: 1rem;
-        }
-        
-        .plan-features {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-        
-        .plan-features li {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            color: var(--text-secondary);
-        }
-        
-        .plan-features li:last-child {
-            border-bottom: none;
-        }
-        
-        .plan-features li .check {
-            color: var(--primary-green);
-            font-size: 1.2rem;
-        }
-        
-        .plan-cta {
-            display: block;
-            width: 100%;
-            padding: 1rem;
-            background: var(--accent-gradient);
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            font-weight: 600;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-        }
-        
-        .plan-cta:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(231, 76, 60, 0.3);
-        }
-        
-        /* Features Section */
-        .features {
-            padding: 5rem 2rem;
-            background: linear-gradient(180deg, transparent, rgba(26, 26, 26, 0.5), transparent);
-        }
-        
-        .features-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-        
-        .feature-card {
-            background: linear-gradient(135deg, var(--dark-card), rgba(26, 26, 26, 0.8));
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 2.5rem;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-        
-        .feature-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--accent-gradient);
-            transform: scaleX(0);
-            transition: transform 0.3s ease;
-        }
-        
-        .feature-card:hover::after {
-            transform: scaleX(1);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-            border-color: rgba(231, 76, 60, 0.5);
-        }
-        
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .feature-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        .feature-description {
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-        
-        /* Contact Section */
-        .contact {
-            padding: 5rem 2rem;
-        }
-        
-        .contact-container {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .contact-card {
-            background: rgba(26, 26, 26, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        
-        .contact-card:hover {
-            background: rgba(26, 26, 26, 0.8);
-            border-color: var(--primary-coral);
-            transform: scale(1.05);
-            box-shadow: 0 15px 35px rgba(231, 76, 60, 0.2);
-        }
-        
-        .contact-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: block;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .contact-label {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .contact-info {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--light-text);
-            text-decoration: none;
-            display: block;
-            word-break: break-word;
-            transition: color 0.3s ease;
-        }
-        
-        .contact-info:hover {
-            color: var(--primary-coral);
-        }
-        
-        /* Footer */
-        footer {
-            padding: 3rem 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(15, 15, 15, 0.9);
-        }
-        
-        .footer-text {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-brand {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 600;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(15, 15, 15, 0.98);
-                flex-direction: column;
-                padding: 2rem;
-                gap: 1.5rem;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            }
-            
-            .nav-links.active {
-                display: flex;
-            }
-            
-            .mobile-menu-btn {
-                display: flex;
-            }
-            
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 3rem;
-            }
-            
-            .hero-visual {
-                order: -1;
-            }
-            
-            .floating-card {
-                margin: 0 auto;
-                max-width: 400px;
-            }
-            
-            .steps-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .hero-title {
-                font-size: 2rem;
-            }
-            
-            .plans-container {
-                grid-template-columns: 1fr;
-            }
-            
-            .plan-card.recommended {
-                transform: none;
-            }
-            
-            .hero {
-                padding-top: 8rem;
-            }
-        }
-        
-        /* Scroll Animations */
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease;
-        }
-        
-        .scroll-reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 10px;
-        }
-        
-        ::-webkit-scrollbar-track {
-            background: var(--dark-bg);
-        }
-        
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, var(--primary-purple), var(--primary-coral));
-            border-radius: 5px;
-        }
-        
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(180deg, var(--primary-coral), var(--primary-orange));
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FIFA World Cup Legacy</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#000;--bg2:#0a0a0f;--bg3:#111118;--gold:#d4af37;--gold2:#f4d03f;--gold3:#b8960c;--text:#f5f5f7;--text2:#a1a1aa;--text3:#71717a;--border:rgba(255,255,255,0.1)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Cormorant Garamond',serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+.preloader{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2rem;transition:opacity 1s}
+.preloader.hide{opacity:0;pointer-events:none}
+.preloader h1{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:var(--gold);letter-spacing:0.2em}
+.loader{width:200px;height:2px;background:var(--bg3);overflow:hidden}
+.loader span{display:block;height:100%;background:linear-gradient(90deg,var(--gold3),var(--gold),var(--gold2));animation:load 2s ease forwards}
+@keyframes load{from{width:0}to{width:100%}}
+
+nav{position:fixed;top:0;left:0;right:0;height:80px;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;z-index:100;transition:background 0.3s}
+nav.scrolled{background:rgba(0,0,0,0.9);backdrop-filter:blur(10px)}
+.logo{display:flex;align-items:center;gap:1rem;text-decoration:none}
+.logo-icon{width:45px;height:45px;background:linear-gradient(135deg,var(--gold3),var(--gold),var(--gold2));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem}
+.logo-text{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:#fff;letter-spacing:0.1em}
+.logo-text span{color:var(--gold)}
+.nav-links{display:flex;gap:3rem;list-style:none}
+.nav-links a{font-family:'Oswald',sans-serif;font-size:0.85rem;color:var(--text2);text-decoration:none;text-transform:uppercase;letter-spacing:0.15em;transition:color 0.3s}
+.nav-links a:hover{color:var(--gold)}
+.nav-btn{font-family:'Oswald',sans-serif;font-size:0.85rem;color:var(--bg);background:linear-gradient(135deg,var(--gold3),var(--gold),var(--gold2));border:none;padding:1rem 2rem;text-transform:uppercase;letter-spacing:0.1em;cursor:pointer}
+
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem;position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,175,55,0.08),transparent 60%)}
+.hero-content{max-width:900px;position:relative;z-index:1}
+.hero-badge{display:inline-block;font-family:'Oswald',sans-serif;font-size:0.7rem;color:var(--gold);background:rgba(212,175,55,0.1);border:1px solid rgba(212,175,55,0.3);padding:0.5rem 1.5rem;letter-spacing:0.3em;text-transform:uppercase;margin-bottom:2rem}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,12vw,10rem);line-height:0.9;margin-bottom:1.5rem}
+.hero h1 .outline{-webkit-text-stroke:2px var(--gold);color:transparent}
+.hero h1 .gold{background:linear-gradient(135deg,var(--gold3),var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:1.3rem;color:var(--text2);max-width:600px;margin:0 auto 3rem;line-height:1.8}
+.hero-stats{display:flex;justify-content:center;gap:5rem;margin-bottom:3rem}
+.hero-stat{text-align:center}
+.hero-stat-val{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;color:var(--gold)}
+.hero-stat-lbl{font-family:'Oswald',sans-serif;font-size:0.65rem;color:var(--text3);letter-spacing:0.2em;text-transform:uppercase}
+.hero-btns{display:flex;justify-content:center;gap:1.5rem}
+.btn{font-family:'Oswald',sans-serif;font-size:0.9rem;padding:1.2rem 2.5rem;text-transform:uppercase;letter-spacing:0.15em;text-decoration:none;transition:all 0.3s}
+.btn-primary{color:var(--bg);background:linear-gradient(135deg,var(--gold3),var(--gold),var(--gold2));border:none}
+.btn-outline{color:var(--text);background:transparent;border:1px solid var(--border)}
+.btn:hover{transform:translateY(-3px)}
+
+section{padding:8rem 4rem;position:relative}
+.section-header{text-align:center;margin-bottom:5rem}
+.section-tag{font-family:'Oswald',sans-serif;font-size:0.7rem;color:var(--gold);letter-spacing:0.4em;text-transform:uppercase;margin-bottom:1rem}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,6vw,4.5rem);color:#fff}
+.section-title span{color:var(--gold)}
+.section-desc{font-size:1.1rem;color:var(--text2);max-width:600px;margin:1.5rem auto 0}
+
+#history{background:var(--bg2)}
+.timeline{max-width:1200px;margin:0 auto;position:relative}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,var(--gold3),var(--gold),var(--gold3),transparent);transform:translateX(-50%)}
+.tl-item{display:flex;align-items:center;margin-bottom:5rem;opacity:0;transform:translateY(30px);transition:all 0.6s}
+.tl-item.show{opacity:1;transform:translateY(0)}
+.tl-item:nth-child(odd){flex-direction:row}
+.tl-item:nth-child(even){flex-direction:row-reverse}
+.tl-content{width:calc(50% - 50px);padding:2rem;background:linear-gradient(145deg,var(--bg3),var(--bg2));border:1px solid var(--border);cursor:pointer;transition:all 0.3s}
+.tl-content:hover{border-color:rgba(212,175,55,0.3);transform:translateY(-5px);box-shadow:0 10px 40px rgba(0,0,0,0.3)}
+.tl-year{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--gold)}
+.tl-loc{font-family:'Oswald',sans-serif;font-size:0.7rem;color:var(--text3);letter-spacing:0.2em;text-transform:uppercase;margin:0.5rem 0 1rem}
+.tl-winner{font-family:'Oswald',sans-serif;font-size:1.3rem;color:#fff}
+.tl-score{font-size:0.95rem;color:var(--text2);margin-top:0.5rem}
+.tl-node{width:16px;height:16px;background:var(--bg);border:3px solid var(--gold);border-radius:50%;position:relative;z-index:1;transition:all 0.3s}
+.tl-item:hover .tl-node{background:var(--gold);box-shadow:0 0 20px rgba(212,175,55,0.5)}
+
+#stats{background:var(--bg)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;max-width:1200px;margin:0 auto}
+.stat-card{padding:2.5rem;background:linear-gradient(145deg,var(--bg3),var(--bg2));border:1px solid var(--border);text-align:center;transition:all 0.3s}
+.stat-card:hover{border-color:rgba(212,175,55,0.3);transform:translateY(-10px)}
+.stat-icon{font-size:2.5rem;margin-bottom:1rem}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:var(--gold)}
+.stat-lbl{font-family:'Oswald',sans-serif;font-size:0.85rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.1em}
+
+#quiz{background:var(--bg2)}
+.quiz-card{max-width:800px;margin:0 auto;background:linear-gradient(145deg,var(--bg3),var(--bg2));border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.quiz-header{padding:2rem;background:rgba(212,175,55,0.05);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.quiz-cat{font-family:'Oswald',sans-serif;font-size:0.7rem;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase}
+.quiz-prog{display:flex;align-items:center;gap:1rem}
+.quiz-bar{width:120px;height:4px;background:var(--bg);border-radius:2px;overflow:hidden}
+.quiz-fill{height:100%;background:linear-gradient(90deg,var(--gold3),var(--gold));transition:width 0.3s}
+.quiz-num{font-family:'Oswald',sans-serif;font-size:0.75rem;color:var(--text3)}
+.quiz-body{padding:3rem}
+.quiz-q{font-family:'Oswald',sans-serif;font-size:1.6rem;color:#fff;margin-bottom:2rem;line-height:1.4}
+.quiz-opts{display:grid;gap:1rem}
+.quiz-opt{display:flex;align-items:center;gap:1rem;padding:1.2rem 1.5rem;background:var(--bg);border:1px solid var(--border);cursor:pointer;transition:all 0.3s}
+.quiz-opt:hover{border-color:var(--gold);background:rgba(212,175,55,0.1)}
+.quiz-opt.correct{border-color:#10b981;background:rgba(16,185,129,0.15)}
+.quiz-opt.wrong{border-color:#ef4444;background:rgba(239,68,68,0.15)}
+.quiz-letter{width:30px;height:30px;display:flex;align-items:center;justify-content:center;background:var(--bg3);border:1px solid var(--border);border-radius:50%;font-family:'Oswald',sans-serif;font-size:0.8rem;color:var(--text2)}
+.quiz-opt:hover .quiz-letter{background:var(--gold);color:var(--bg)}
+.quiz-text{font-size:1.05rem;color:var(--text)}
+.quiz-footer{padding:2rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.quiz-score{font-family:'Oswald',sans-serif;font-size:0.85rem;color:var(--text3)}
+.quiz-score span{color:var(--gold)}
+
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all 0.3s}
+.modal.open{opacity:1;visibility:visible}
+.modal-box{width:90%;max-width:650px;max-height:85vh;background:linear-gradient(145deg,var(--bg3),var(--bg2));border:1px solid rgba(212,175,55,0.3);border-radius:12px;overflow:hidden;transform:scale(0.9);transition:transform 0.3s}
+.modal.open .modal-box{transform:scale(1)}
+.modal-close{position:absolute;top:1rem;right:1rem;width:40px;height:40px;background:var(--bg);border:1px solid var(--border);border-radius:50%;color:var(--text2);font-size:1.2rem;cursor:pointer;transition:all 0.3s}
+.modal-close:hover{background:var(--gold);color:var(--bg)}
+.modal-head{padding:3rem;background:linear-gradient(135deg,rgba(212,175,55,0.1),transparent);text-align:center;position:relative}
+.modal-year{font-family:'Bebas Neue',sans-serif;font-size:5rem;color:var(--gold);line-height:1}
+.modal-host{font-family:'Oswald',sans-serif;font-size:1.1rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.2em;margin-top:0.5rem}
+.modal-body{padding:2rem;max-height:50vh;overflow-y:auto}
+.modal-section{margin-bottom:2rem}
+.modal-label{font-family:'Oswald',sans-serif;font-size:0.65rem;color:var(--gold);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:0.5rem}
+.modal-champ{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:#fff;text-align:center}
+.modal-final{font-family:'Oswald',sans-serif;font-size:1.2rem;color:#fff;text-align:center}
+.modal-stadium{font-size:0.9rem;color:var(--text3);text-align:center;font-style:italic}
+.modal-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;padding:1.5rem;background:var(--bg);border-radius:8px;margin:1.5rem 0}
+.modal-stat{text-align:center}
+.modal-stat-val{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;color:var(--gold)}
+.modal-stat-lbl{font-family:'Oswald',sans-serif;font-size:0.6rem;color:var(--text3);text-transform:uppercase}
+.modal-podium{display:flex;flex-direction:column;gap:0.5rem}
+.podium-item{display:flex;align-items:center;gap:1rem;padding:0.8rem 1rem;background:var(--bg);border-radius:6px;border-left:3px solid var(--text3)}
+.podium-item.g{border-color:var(--gold);background:linear-gradient(90deg,rgba(212,175,55,0.1),transparent)}
+.podium-item.s{border-color:#c0c0c0}
+.podium-item.b{border-color:#cd7f32}
+.podium-pos{font-family:'Bebas Neue',sans-serif;font-size:1rem;width:30px}
+.podium-item.g .podium-pos{color:var(--gold)}
+.modal-trivia{padding:1.2rem;background:rgba(212,175,55,0.05);border:1px solid rgba(212,175,55,0.2);border-radius:8px;font-size:0.95rem;color:var(--text2);font-style:italic;line-height:1.6}
+
+footer{background:var(--bg);padding:5rem 4rem 2rem;border-top:1px solid var(--border)}
+.footer-content{max-width:1200px;margin:0 auto}
+.footer-top{display:flex;justify-content:space-between;padding-bottom:3rem;border-bottom:1px solid var(--border)}
+.footer-brand{max-width:280px}
+.footer-brand p{font-size:0.95rem;color:var(--text3);margin-top:1rem;line-height:1.7}
+.footer-links{display:flex;gap:5rem}
+.footer-col h4{font-family:'Oswald',sans-serif;font-size:0.85rem;color:#fff;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1.5rem}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:0.5rem}
+.footer-col a{font-size:0.95rem;color:var(--text3);text-decoration:none;transition:color 0.3s}
+.footer-col a:hover{color:var(--gold)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem}
+.footer-copy{font-family:'Oswald',sans-serif;font-size:0.7rem;color:var(--text3);letter-spacing:0.1em}
+
+@media(max-width:768px){
+.stats-grid{grid-template-columns:repeat(2,1fr)}
+.hero-stats{flex-wrap:wrap;gap:2rem}
+.tl-item{flex-direction:column!important}
+.tl-content{width:100%}
+.timeline::before{left:20px}
+.tl-node{position:absolute;left:12px}
+nav .nav-links{display:none}
+.modal-stats{grid-template-columns:repeat(2,1fr)}
+.footer-top{flex-direction:column;gap:3rem}
+}
+</style>
 </head>
 <body>
-    <div class="bg-animation"></div>
-    
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <div class="logo-section">
-                <img src="Micro.png" class="logo-img" alt="HerCor Logo">
-                <div class="logo-text">
-                    <span class="her">Her</span><span class="cor">Cor</span>
-                </div>
-            </div>
-            <div class="mobile-menu-btn" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#como-funciona">Cómo Funciona</a></li>
-                <li><a href="#planes">Planes de Pago</a></li>
-                <li><a href="#ventajas">Ventajas</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </div>
-    </nav>
-    
-    <!-- Hero Section -->
-    <section class="hero" id="inicio">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1 class="hero-title">
-                    Compra Ahora, <br>
-                    <span class="gradient-text">Paga a tu Ritmo</span><br>
-                    Sin Tarjetas
-                </h1>
-                <p class="hero-subtitle">
-                    En HerCor Universal Products te damos acceso a productos de Amazon y Mercado Libre con pagos semanales a tu medida. ¡Elige pagar de contado o a plazos hasta 6 meses!
-                </p>
-                <a href="#planes" class="cta-button">
-                    Ver Planes de Pago 💳
-                </a>
-            </div>
-            
-            <div class="hero-visual">
-                <div class="floating-card">
-                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem; font-family: 'Poppins', sans-serif;">
-                        💰 Formas de Pago
-                    </h3>
-                    <div class="payment-options">
-                        <div class="payment-option">
-                            <div class="payment-option-header">
-                                <div class="payment-icon">💵</div>
-                                <span class="payment-title">Pago de Contado</span>
-                                <span class="badge">+ $50 MXN</span>
-                            </div>
-                            <p class="payment-description">
-                                Paga el total del producto en un solo pago y solo cobramos una comisión de $50 MXN
-                            </p>
-                        </div>
-                        <div class="payment-option featured">
-                            <div class="payment-option-header">
-                                <div class="payment-icon">📅</div>
-                                <span class="payment-title">Pagos Semanales</span>
-                            </div>
-                            <p class="payment-description">
-                                Divide tu compra en pagos semanales hasta 6 meses con tasa preferencial. Solicita tu formulario de crédito por WhatsApp.
-                            </p>
-                            <span class="day-badge">📆 Abonos recomendados cada Lunes</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- How it Works Section -->
-    <section class="how-it-works" id="como-funciona">
-        <div class="section-title">¿Cómo Funciona?</div>
-        <p class="section-subtitle">
-            Accede a millones de productos con pagos a tu medida
-        </p>
-        
-        <div class="steps-container">
-            <div class="step-card scroll-reveal">
-                <div class="step-number">1</div>
-                <div class="step-icon">🔍</div>
-                <h3 class="step-title">Encuentra tu Producto</h3>
-                <p class="step-description">
-                    Busca el producto que deseas en Amazon o Mercado Libre y comparte el enlace con nosotros
-                </p>
-            </div>
-            
-            <div class="step-card scroll-reveal">
-                <div class="step-number">2</div>
-                <div class="step-icon">📋</div>
-                <h3 class="step-title">Llena el Formulario</h3>
-                <p class="step-description">
-                    Escríbenos por WhatsApp y te enviaremos el formulario de crédito para completar tu solicitud
-                </p>
-            </div>
-            
-            <div class="step-card scroll-reveal">
-                <div class="step-number">3</div>
-                <div class="step-icon">✍️</div>
-                <h3 class="step-title">Elige tu Plan</h3>
-                <p class="step-description">
-                    Selecciona entre pago de contado o pagos semanales hasta 6 meses según tu conveniencia
-                </p>
-            </div>
-            
-            <div class="step-card scroll-reveal">
-                <div class="step-number">4</div>
-                <div class="step-icon">📦</div>
-                <h3 class="step-title">Recibe y Abona</h3>
-                <p class="step-description">
-                    Recoge tu producto y realiza tus abonos (recomendamos los lunes) en nuestra tienda física
-                </p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Payment Plans Section -->
-    <section class="payment-plans" id="planes">
-        <div class="section-title">Planes de Pago</div>
-        <p class="section-subtitle">
-            Elige la opción que mejor se adapte a ti
-        </p>
-        
-        <div class="plans-container">
-            <div class="plan-card scroll-reveal">
-                <div class="plan-icon">💵</div>
-                <h3 class="plan-title">Pago de Contado</h3>
-                <p class="plan-subtitle">Un solo pago, sin complicaciones</p>
-                
-                <ul class="plan-features">
-                    <li><span class="check">✓</span> Paga el total del producto</li>
-                    <li><span class="check">✓</span> Comisión única de $50 MXN</li>
-                    <li><span class="check">✓</span> Sin tasa adicional</li>
-                    <li><span class="check">✓</span> Recibe tu producto de inmediato</li>
-                    <li><span class="check">✓</span> Ideal para compras rápidas</li>
-                </ul>
-                
-                <a href="#contacto" class="plan-cta">Comprar de Contado</a>
-            </div>
-            
-            <div class="plan-card recommended scroll-reveal">
-                <div class="recommended-badge">POPULAR</div>
-                <div class="plan-icon">📅</div>
-                <h3 class="plan-title">Pagos Semanales</h3>
-                <p class="plan-subtitle">Divide tu compra hasta en 6 meses</p>
-                
-                <ul class="plan-features">
-                    <li><span class="check">✓</span> Pagos semanales accesibles</li>
-                    <li><span class="check">✓</span> Plazos de 1 a 6 meses</li>
-                    <li><span class="check">✓</span> Tasa preferencial</li>
-                    <li><span class="check">✓</span> Abonos recomendados cada lunes</li>
-                    <li><span class="check">✓</span> Sin necesidad de tarjeta bancaria</li>
-                    <li><span class="check">✓</span> Formulario de crédito por WhatsApp</li>
-                </ul>
-                
-                <a href="https://wa.me/524941127160?text=Hola,%20me%20interesa%20solicitar%20un%20crédito.%20¿Me%20pueden%20enviar%20el%20formulario?" class="plan-cta">Solicitar Formulario 📝</a>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Features Section -->
-    <section class="features" id="ventajas">
-        <div class="section-title">¿Por Qué Elegirnos?</div>
-        <p class="section-subtitle">
-            Ventajas de comprar con HerCor Universal Products
-        </p>
-        
-        <div class="features-grid">
-            <div class="feature-card scroll-reveal">
-                <span class="feature-icon">🚫💳</span>
-                <h3 class="feature-title">Sin Tarjetas Bancarias</h3>
-                <p class="feature-description">
-                    No necesitas cuenta bancaria ni tarjetas. Paga en efectivo directamente en nuestra tienda.
-                </p>
-            </div>
-            
-            <div class="feature-card scroll-reveal">
-                <span class="feature-icon">📅</span>
-                <h3 class="feature-title">Pagos Semanales Flexibles</h3>
-                <p class="feature-description">
-                    Divide tus compras en pagos semanales cómodos. Plazos desde 1 hasta 6 meses según tu preferencia.
-                </p>
-            </div>
-            
-            <div class="feature-card scroll-reveal">
-                <span class="feature-icon">💰</span>
-                <h3 class="feature-title">Tasa Preferencial</h3>
-                <p class="feature-description">
-                    Te ofrecemos tasas preferenciales para que puedas adquirir lo que necesitas de manera accesible.
-                </p>
-            </div>
-            
-            <div class="feature-card scroll-reveal">
-                <span class="feature-icon">📆</span>
-                <h3 class="feature-title">Abonos los Lunes</h3>
-                <p class="feature-description">
-                    Recomendamos realizar tus abonos los días lunes para mejor organización de tus finanzas.
-                </p>
-            </div>
-            
-            <div class="feature-card scroll-reveal">
-                <span class="feature-icon">🏪</span>
-                <h3 class="feature-title">Tienda Física</h3>
-                <p class="feature-description">
-                    Visítanos en nuestra tienda física para realizar tus abonos semanales y recoger tus productos.
-                </p>
-            </div>
-            
-            <div class="feature-card scroll-reveal">
-                <span class="feature-icon">👥</span>
-                <h3 class="feature-title">Atención Personalizada</h3>
-                <p class="feature-description">
-                    Te asesoramos para encontrar el mejor plan de pagos según tu situación y necesidades.
-                </p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Contact Section -->
-    <section class="contact" id="contacto">
-        <div class="contact-container">
-            <h2 class="section-title">Contáctanos</h2>
-            <p class="section-subtitle">
-                Estamos aquí para ayudarte a conseguir lo que necesitas
-            </p>
-            
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <span class="contact-icon">📧</span>
-                    <p class="contact-label">Correo Electrónico</p>
-                    <a href="mailto:hercoruniversalproducts@gmail.com" class="contact-info">
-                        hercoruniversalproducts@gmail.com
-                    </a>
-                </div>
-                
-                <div class="contact-card">
-                    <span class="contact-icon">📱</span>
-                    <p class="contact-label">WhatsApp</p>
-                    <a href="https://wa.me/524941127160" class="contact-info">
-                        +52 494 112 7160
-                    </a>
-                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">
-                        📝 Solicita tu formulario de crédito aquí
-                    </p>
-                </div>
-                
-                <div class="contact-card">
-                    <span class="contact-icon">📞</span>
-                    <p class="contact-label">Teléfono</p>
-                    <a href="tel:+52564910290" class="contact-info">
-                        +52 5649 10290
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer>
-        <p class="footer-text">
-            © 2024 Todos los derechos reservados
-        </p>
-        <p class="footer-brand">
-            HerCor Universal Products
-        </p>
-        <p class="footer-text" style="margin-top: 1rem; font-size: 0.8rem;">
-            Tu puente confiable al comercio digital en México 🇲🇽
-        </p>
-    </footer>
-    
-    <script>
-        // Mobile menu toggle
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            navLinks.classList.toggle('active');
-        }
-        
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.getElementById('navLinks').classList.remove('active');
-            });
+
+<div class="preloader" id="preloader">
+<h1>FIFA WORLD CUP</h1>
+<div class="loader"><span></span></div>
+<p style="font-family:Oswald;font-size:0.7rem;color:#71717a;letter-spacing:0.3em;text-transform:uppercase">Loading history</p>
+</div>
+
+<nav id="nav">
+<a href="#" class="logo">
+<div class="logo-icon">&#9917;</div>
+<div class="logo-text">WORLD <span>CUP</span></div>
+</a>
+<ul class="nav-links">
+<li><a href="#history">History</a></li>
+<li><a href="#stats">Statistics</a></li>
+<li><a href="#quiz">Quiz</a></li>
+</ul>
+<button class="nav-btn">Explore</button>
+</nav>
+
+<section class="hero">
+<div class="hero-content">
+<div class="hero-badge">92 Years of Glory</div>
+<h1><span class="outline">FIFA WORLD</span><span class="gold">CUP LEGACY</span></h1>
+<p>An epic journey through the history of the most prestigious football tournament. From Uruguay 1930 to Qatar 2022.</p>
+<div class="hero-stats">
+<div class="hero-stat"><div class="hero-stat-val">22</div><div class="hero-stat-lbl">World Cups</div></div>
+<div class="hero-stat"><div class="hero-stat-val">8</div><div class="hero-stat-lbl">Champions</div></div>
+<div class="hero-stat"><div class="hero-stat-val">2548</div><div class="hero-stat-lbl">Goals</div></div>
+<div class="hero-stat"><div class="hero-stat-val">79</div><div class="hero-stat-lbl">Nations</div></div>
+</div>
+<div class="hero-btns">
+<a href="#history" class="btn btn-primary">Start Journey</a>
+<a href="#quiz" class="btn btn-outline">Take Quiz</a>
+</div>
+</div>
+</section>
+
+<section id="history">
+<div class="section-header">
+<div class="section-tag">The History</div>
+<h2 class="section-title">World Cup <span>Timeline</span></h2>
+<p class="section-desc">Each cup tells a unique story. Click to explore details.</p>
+</div>
+<div class="timeline" id="timeline"></div>
+</section>
+
+<section id="stats">
+<div class="section-header">
+<div class="section-tag">The Numbers</div>
+<h2 class="section-title">Global <span>Statistics</span></h2>
+</div>
+<div class="stats-grid">
+<div class="stat-card"><div class="stat-icon">&#127942;</div><div class="stat-num">5</div><div class="stat-lbl">Brazil Titles</div></div>
+<div class="stat-card"><div class="stat-icon">&#9917;</div><div class="stat-num">16</div><div class="stat-lbl">Klose Goals</div></div>
+<div class="stat-card"><div class="stat-icon">&#127918;</div><div class="stat-num">900+</div><div class="stat-lbl">Matches</div></div>
+<div class="stat-card"><div class="stat-icon">&#127758;</div><div class="stat-num">17</div><div class="stat-lbl">Host Nations</div></div>
+</div>
+</section>
+
+<section id="quiz">
+<div class="section-header">
+<div class="section-tag">Test Yourself</div>
+<h2 class="section-title">World Cup <span>Quiz</span></h2>
+</div>
+<div class="quiz-card">
+<div class="quiz-header">
+<div class="quiz-cat" id="qCat">History</div>
+<div class="quiz-prog"><div class="quiz-bar"><div class="quiz-fill" id="qBar"></div></div><span class="quiz-num" id="qNum">1/20</span></div>
+</div>
+<div class="quiz-body" id="qBody">
+<div class="quiz-q" id="qQ">Loading...</div>
+<div class="quiz-opts" id="qOpts"></div>
+</div>
+<div class="quiz-footer" id="qFoot">
+<div class="quiz-score">Score: <span id="qScore">0</span> pts</div>
+<button class="btn btn-primary" id="qNext">Next</button>
+</div>
+</div>
+</section>
+
+<div class="modal" id="modal">
+<div class="modal-box">
+<button class="modal-close" id="mClose">&#10005;</button>
+<div class="modal-head">
+<div class="modal-year" id="mYear">1930</div>
+<div class="modal-host" id="mHost">Uruguay</div>
+</div>
+<div class="modal-body">
+<div class="modal-section" style="text-align:center;padding-bottom:1.5rem;border-bottom:1px solid var(--border)">
+<div class="modal-label">Champion</div>
+<div class="modal-champ" id="mChamp">Uruguay</div>
+</div>
+<div class="modal-section" style="text-align:center">
+<div class="modal-label">Final</div>
+<div class="modal-final" id="mFinal">Uruguay 4-2 Argentina</div>
+<div class="modal-stadium" id="mStadium">Estadio Centenario</div>
+</div>
+<div class="modal-stats">
+<div class="modal-stat"><div class="modal-stat-val" id="mTeams">13</div><div class="modal-stat-lbl">Teams</div></div>
+<div class="modal-stat"><div class="modal-stat-val" id="mMatches">18</div><div class="modal-stat-lbl">Matches</div></div>
+<div class="modal-stat"><div class="modal-stat-val" id="mGoals">70</div><div class="modal-stat-lbl">Goals</div></div>
+<div class="modal-stat"><div class="modal-stat-val" id="mAtt">590K</div><div class="modal-stat-lbl">Attendance</div></div>
+</div>
+<div class="modal-section">
+<div class="modal-label">Podium</div>
+<div class="modal-podium">
+<div class="podium-item g"><span class="podium-pos">1st</span><span id="m1">Uruguay</span></div>
+<div class="podium-item s"><span class="podium-pos">2nd</span><span id="m2">Argentina</span></div>
+<div class="podium-item b"><span class="podium-pos">3rd</span><span id="m3">USA</span></div>
+</div>
+</div>
+<div class="modal-section">
+<div class="modal-label">Top Scorer</div>
+<div style="display:flex;align-items:center;gap:1rem;padding:0.8rem 1rem;background:var(--bg);border-radius:6px">
+<span id="mScorer" style="flex:1;font-family:Oswald;color:#fff">G. Stabile</span>
+<span id="mSGoals" style="font-family:Oswald;font-size:0.8rem;color:var(--gold);background:rgba(212,175,55,0.15);padding:0.3rem 0.8rem;border-radius:4px">8 goals</span>
+</div>
+</div>
+<div class="modal-section">
+<div class="modal-label">Did You Know?</div>
+<div class="modal-trivia" id="mTrivia">First World Cup ever.</div>
+</div>
+</div>
+</div>
+</div>
+
+<footer>
+<div class="footer-content">
+<div class="footer-top">
+<div class="footer-brand">
+<a href="#" class="logo">
+<div class="logo-icon">&#9917;</div>
+<div class="logo-text">WORLD <span>CUP</span></div>
+</a>
+<p>An interactive experience celebrating the history and glory of the FIFA World Cup.</p>
+</div>
+<div class="footer-links">
+<div class="footer-col"><h4>Explore</h4><ul><li><a href="#history">History</a></li><li><a href="#stats">Statistics</a></li><li><a href="#quiz">Quiz</a></li></ul></div>
+<div class="footer-col"><h4>Discover</h4><ul><li><a href="#">Champions</a></li><li><a href="#">Top Scorers</a></li><li><a href="#">Records</a></li></ul></div>
+</div>
+</div>
+<div class="footer-bottom">
+<p class="footer-copy">2024 World Cup Legacy</p>
+</div>
+</div>
+</footer>
+
+<script type="text/javascript">
+var DATA = [
+{y:1930,h:"Uruguay",c:"Uruguay",f:"Uruguay 4-2 Argentina",st:"Estadio Centenario",t:13,m:18,g:70,a:"590K",p:["Uruguay","Argentina","USA"],sc:"G. Stabile",sg:"8 goals",tr:"First World Cup ever. Uruguay hosted to celebrate 100 years of independence."},
+{y:1934,h:"Italy",c:"Italy",f:"Italy 2-1 Czechoslovakia",st:"Stadio Nazionale, Rome",t:16,m:17,g:70,a:"363K",p:["Italy","Czechoslovakia","Germany"],sc:"O. Nejedly",sg:"5 goals",tr:"First knockout-only format. Mussolini used it as fascist propaganda."},
+{y:1938,h:"France",c:"Italy",f:"Italy 4-2 Hungary",st:"Stade Olympique, Paris",t:15,m:18,g:84,a:"375K",p:["Italy","Hungary","Brazil"],sc:"Leonidas",sg:"7 goals",tr:"Italy became first back-to-back champion. Last WC before WWII."},
+{y:1950,h:"Brazil",c:"Uruguay",f:"Uruguay 2-1 Brazil",st:"Maracana, Rio",t:13,m:22,g:88,a:"1.04M",p:["Uruguay","Brazil","Sweden"],sc:"Ademir",sg:"9 goals",tr:"The Maracanazo: Uruguay shocked Brazil before 200,000 fans."},
+{y:1954,h:"Switzerland",c:"Germany",f:"Germany 3-2 Hungary",st:"Wankdorf Stadium, Bern",t:16,m:26,g:140,a:"768K",p:["Germany","Hungary","Austria"],sc:"S. Kocsis",sg:"11 goals",tr:"Miracle of Bern: Germany beat undefeated Hungary. Highest-scoring WC ever."},
+{y:1958,h:"Sweden",c:"Brazil",f:"Brazil 5-2 Sweden",st:"Rasunda Stadium",t:16,m:35,g:126,a:"819K",p:["Brazil","Sweden","France"],sc:"J. Fontaine",sg:"13 goals",tr:"17-year-old Pele debuted. Fontaine set the single-tournament record."},
+{y:1962,h:"Chile",c:"Brazil",f:"Brazil 3-1 Czechoslovakia",st:"Estadio Nacional, Santiago",t:16,m:32,g:89,a:"893K",p:["Brazil","Czechoslovakia","Chile"],sc:"Garrincha",sg:"4 goals",tr:"Brazil won despite Pele injury. Garrincha was the star."},
+{y:1966,h:"England",c:"England",f:"England 4-2 Germany",st:"Wembley Stadium, London",t:16,m:32,g:89,a:"1.61M",p:["England","Germany","Portugal"],sc:"Eusebio",sg:"9 goals",tr:"England's only title. The controversial Ghost Goal."},
+{y:1970,h:"Mexico",c:"Brazil",f:"Brazil 4-1 Italy",st:"Estadio Azteca",t:16,m:32,g:95,a:"1.67M",p:["Brazil","Italy","Germany"],sc:"G. Muller",sg:"10 goals",tr:"Best team ever. Brazil kept Jules Rimet trophy permanently."},
+{y:1974,h:"Germany",c:"Germany",f:"Germany 2-1 Netherlands",st:"Olympiastadion, Munich",t:16,m:38,g:97,a:"1.86M",p:["Germany","Netherlands","Poland"],sc:"G. Lato",sg:"7 goals",tr:"Dutch Total Football with Cruyff. New FIFA trophy introduced."},
+{y:1978,h:"Argentina",c:"Argentina",f:"Argentina 3-1 Netherlands",st:"Estadio Monumental",t:16,m:38,g:102,a:"1.55M",p:["Argentina","Netherlands","Brazil"],sc:"M. Kempes",sg:"6 goals",tr:"Argentina's first title. Held during military dictatorship."},
+{y:1982,h:"Spain",c:"Italy",f:"Italy 3-1 Germany",st:"Santiago Bernabeu, Madrid",t:24,m:52,g:146,a:"2.11M",p:["Italy","Germany","Poland"],sc:"P. Rossi",sg:"6 goals",tr:"Paolo Rossi won Golden Ball just out of a ban."},
+{y:1986,h:"Mexico",c:"Argentina",f:"Argentina 3-2 Germany",st:"Estadio Azteca",t:24,m:52,g:132,a:"2.39M",p:["Argentina","Germany","France"],sc:"G. Lineker",sg:"6 goals",tr:"Maradona's WC: Hand of God and Goal of the Century."},
+{y:1990,h:"Italy",c:"Germany",f:"Germany 1-0 Argentina",st:"Stadio Olimpico, Rome",t:24,m:52,g:115,a:"2.52M",p:["Germany","Argentina","Italy"],sc:"S. Schillaci",sg:"6 goals",tr:"Lowest-scoring WC. Cameroon surprised reaching quarters."},
+{y:1994,h:"USA",c:"Brazil",f:"Brazil 0(3)-0(2) Italy",st:"Rose Bowl, Pasadena",t:24,m:52,g:141,a:"3.59M",p:["Brazil","Italy","Sweden"],sc:"O. Salenko",sg:"6 goals",tr:"First final on penalties. Baggio missed the decisive kick."},
+{y:1998,h:"France",c:"France",f:"France 3-0 Brazil",st:"Stade de France, Paris",t:32,m:64,g:171,a:"2.79M",p:["France","Brazil","Croatia"],sc:"D. Suker",sg:"6 goals",tr:"France's first title at home. Zidane scored twice."},
+{y:2002,h:"Korea/Japan",c:"Brazil",f:"Brazil 2-0 Germany",st:"Yokohama Stadium",t:32,m:64,g:161,a:"2.71M",p:["Brazil","Germany","Turkey"],sc:"Ronaldo",sg:"8 goals",tr:"First Asian WC. Ronaldo redeemed after 1998 trauma."},
+{y:2006,h:"Germany",c:"Italy",f:"Italy 1(5)-1(3) France",st:"Olympiastadion, Berlin",t:32,m:64,g:147,a:"3.36M",p:["Italy","France","Germany"],sc:"M. Klose",sg:"5 goals",tr:"Zidane's headbutt on Materazzi in his final match."},
+{y:2010,h:"South Africa",c:"Spain",f:"Spain 1-0 Netherlands",st:"Soccer City, Johannesburg",t:32,m:64,g:145,a:"3.18M",p:["Spain","Netherlands","Germany"],sc:"T. Muller",sg:"5 goals",tr:"First African WC. Spain won with tiki-taka."},
+{y:2014,h:"Brazil",c:"Germany",f:"Germany 1-0 Argentina",st:"Maracana, Rio",t:32,m:64,g:171,a:"3.43M",p:["Germany","Argentina","Netherlands"],sc:"J. Rodriguez",sg:"6 goals",tr:"Mineirazo: Germany 7-1 Brazil in semifinals."},
+{y:2018,h:"Russia",c:"France",f:"France 4-2 Croatia",st:"Luzhniki Stadium, Moscow",t:32,m:64,g:169,a:"3.03M",p:["France","Croatia","Belgium"],sc:"H. Kane",sg:"6 goals",tr:"19-year-old Mbappe shined. First WC with VAR."},
+{y:2022,h:"Qatar",c:"Argentina",f:"Argentina 3(4)-3(2) France",st:"Lusail Stadium",t:32,m:64,g:172,a:"3.40M",p:["Argentina","France","Croatia"],sc:"K. Mbappe",sg:"8 goals",tr:"Greatest final ever. Messi finally won his World Cup."}
+];
+
+var QUIZ = [
+{c:"History",q:"First country to win 2 consecutive WCs?",o:["Brazil","Italy","Argentina","Germany"],a:1},
+{c:"Records",q:"All-time WC top scorer?",o:["Ronaldo","Klose","Muller","Fontaine"],a:1},
+{c:"Champions",q:"Most WC titles?",o:["Germany","Italy","Brazil","Argentina"],a:2},
+{c:"Finals",q:"First final on penalties?",o:["1990","1994","1998","1986"],a:1},
+{c:"History",q:"What is the Maracanazo?",o:["Brazil 7-1","Uruguay beat Brazil 1950","Maradona goal","Italy win"],a:1},
+{c:"Goals",q:"Who scored Goal of the Century?",o:["Pele","Maradona","Cruyff","Zidane"],a:1},
+{c:"Hosts",q:"First WC in Asia?",o:["Japan","Korea-Japan 2002","Qatar","None"],a:1},
+{c:"Records",q:"Fontaine goals in 1958?",o:["10","11","12","13"],a:3},
+{c:"Finals",q:"2014 final result?",o:["Germany 2-1","Germany 1-0","Argentina 1-0","Germany 3-2"],a:1},
+{c:"History",q:"Years suspended for WWII?",o:["8","10","12","14"],a:2},
+{c:"Champions",q:"First title in 2010?",o:["Netherlands","Spain","Portugal","Belgium"],a:1},
+{c:"Qatar",q:"Mbappe goals in 2022 final?",o:["1","2","3","4"],a:2},
+{c:"History",q:"WC during dictatorship?",o:["Spain 82","Argentina 78","Chile 62","Brazil 50"],a:1},
+{c:"Tech",q:"First WC with VAR?",o:["2014","2018","2022","2006"],a:1},
+{c:"Records",q:"Biggest semifinal margin?",o:["Hungary 9-0","Germany 7-1","Sweden 6-1","Austria 7-0"],a:1},
+{c:"1966",q:"1966 final controversy?",o:["Penalty","Ghost goal","Red card","Offside"],a:1},
+{c:"Mascots",q:"First official mascot?",o:["Willie","Juanito","Naranjito","Fuleco"],a:0},
+{c:"Trophies",q:"Who kept Jules Rimet?",o:["Italy","Uruguay","Brazil","Germany"],a:2},
+{c:"Players",q:"Youngest final scorer?",o:["Pele","Mbappe","Owen","Ronaldo"],a:0},
+{c:"Goals",q:"Klose total WC goals?",o:["14","15","16","17"],a:2}
+];
+
+var cQ = 0, score = 0, answered = false;
+var shuffled = QUIZ.sort(function() { return Math.random() - 0.5; });
+
+window.onload = function() {
+    setTimeout(function() {
+        document.getElementById('preloader').classList.add('hide');
+    }, 2500);
+
+    var nav = document.getElementById('nav');
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 50) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+    });
+
+    var tl = document.getElementById('timeline');
+    for (var i = 0; i < DATA.length; i++) {
+        var d = DATA[i];
+        var item = document.createElement('div');
+        item.className = 'tl-item';
+        item.setAttribute('data-idx', i);
+        item.innerHTML = '<div class="tl-content"><div class="tl-year">' + d.y + '</div><div class="tl-loc">' + d.h + '</div><div class="tl-winner">Champion: ' + d.c + '</div><div class="tl-score">Final: ' + d.f + '</div></div><div class="tl-node"></div>';
+        tl.appendChild(item);
+    }
+
+    var items = document.querySelectorAll('.tl-item');
+    var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+            if (e.isIntersecting) e.target.classList.add('show');
         });
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
+    }, { threshold: 0.1 });
+    items.forEach(function(item) { obs.observe(item); });
+
+    items.forEach(function(item) {
+        item.querySelector('.tl-content').addEventListener('click', function() {
+            var idx = parseInt(item.getAttribute('data-idx'));
+            openModal(idx);
         });
-        
-        // Scroll reveal animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.scroll-reveal').forEach(el => {
-            observer.observe(el);
+    });
+
+    var modal = document.getElementById('modal');
+    document.getElementById('mClose').addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+    });
+
+    loadQuiz();
+    document.getElementById('qNext').addEventListener('click', nextQ);
+};
+
+function openModal(idx) {
+    var d = DATA[idx];
+    document.getElementById('mYear').textContent = d.y;
+    document.getElementById('mHost').textContent = d.h;
+    document.getElementById('mChamp').textContent = d.c;
+    document.getElementById('mFinal').textContent = d.f;
+    document.getElementById('mStadium').textContent = d.st;
+    document.getElementById('mTeams').textContent = d.t;
+    document.getElementById('mMatches').textContent = d.m;
+    document.getElementById('mGoals').textContent = d.g;
+    document.getElementById('mAtt').textContent = d.a;
+    document.getElementById('m1').textContent = d.p[0];
+    document.getElementById('m2').textContent = d.p[1];
+    document.getElementById('m3').textContent = d.p[2];
+    document.getElementById('mScorer').textContent = d.sc;
+    document.getElementById('mSGoals').textContent = d.sg;
+    document.getElementById('mTrivia').textContent = d.tr;
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function loadQuiz() {
+    answered = false;
+    var q = shuffled[cQ];
+    document.getElementById('qCat').textContent = q.c;
+    document.getElementById('qQ').textContent = q.q;
+    document.getElementById('qBar').style.width = ((cQ + 1) / shuffled.length * 100) + '%';
+    document.getElementById('qNum').textContent = (cQ + 1) + '/' + shuffled.length;
+    
+    var html = '';
+    var letters = ['A', 'B', 'C', 'D'];
+    for (var i = 0; i < q.o.length; i++) {
+        html += '<div class="quiz-opt" data-i="' + i + '"><span class="quiz-letter">' + letters[i] + '</span><span class="quiz-text">' + q.o[i] + '</span></div>';
+    }
+    document.getElementById('qOpts').innerHTML = html;
+    
+    var opts = document.querySelectorAll('.quiz-opt');
+    opts.forEach(function(opt) {
+        opt.addEventListener('click', function() {
+            selectOpt(parseInt(this.getAttribute('data-i')));
         });
-    </script>
+    });
+    
+    document.getElementById('qNext').textContent = cQ === shuffled.length - 1 ? 'See Results' : 'Next';
+}
+
+function selectOpt(idx) {
+    if (answered) return;
+    answered = true;
+    var q = shuffled[cQ];
+    var opts = document.querySelectorAll('.quiz-opt');
+    opts.forEach(function(opt, i) {
+        opt.style.pointerEvents = 'none';
+        if (i === q.a) opt.classList.add('correct');
+        else if (i === idx) opt.classList.add('wrong');
+    });
+    if (idx === q.a) {
+        score += 100;
+        document.getElementById('qScore').textContent = score;
+    }
+}
+
+function nextQ() {
+    if (!answered) return;
+    cQ++;
+    if (cQ >= shuffled.length) {
+        showResults();
+    } else {
+        loadQuiz();
+    }
+}
+
+function showResults() {
+    var pct = Math.round(score / (shuffled.length * 100) * 100);
+    var msg, icon;
+    if (pct >= 90) { msg = "World Cup Expert!"; icon = "&#127942;"; }
+    else if (pct >= 70) { msg = "Great job!"; icon = "&#129351;"; }
+    else if (pct >= 50) { msg = "Not bad!"; icon = "&#9917;"; }
+    else { msg = "Keep learning!"; icon = "&#128218;"; }
+    
+    document.getElementById('qBody').innerHTML = '<div style="text-align:center;padding:3rem"><div style="font-size:4rem">' + icon + '</div><div style="font-family:Bebas Neue;font-size:3rem;color:#d4af37;margin:1rem 0">' + score + ' pts</div><div style="font-family:Oswald;font-size:1.3rem;color:#fff">' + pct + '% correct</div><div style="font-size:1rem;color:#a1a1aa;margin:1rem 0 2rem">' + msg + '</div><button onclick="location.reload()" class="btn btn-primary">Play Again</button></div>';
+    document.getElementById('qFoot').style.display = 'none';
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+</script>
 </body>
 </html>
