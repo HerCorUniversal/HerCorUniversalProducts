@@ -3,16 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Energía Nuclear</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Arcanglus — Fragancias de lujo real, al alcance de todos</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --neon: #00ffe0;
-    --danger: #ff3c3c;
-    --gold: #f5c842;
-    --dark: #040b10;
-    --mid: #091520;
-    --text: #cde8f0;
+    --gold: #c9a84c;
+    --gold-light: #e8d48b;
+    --gold-dim: #8a7033;
+    --bg-dark: #0a0a0f;
+    --bg-card: #111118;
+    --bg-card-hover: #16161f;
+    --text-primary: #e8e4dd;
+    --text-secondary: #9a968e;
+    --text-muted: #5e5b55;
+    --miguel-color: #d4a040;
+    --gabriel-color: #c4a0d4;
+    --uriel-color: #7ec8a0;
+    --abadon-color: #5a8aad;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Outfit', sans-serif;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -20,596 +29,999 @@
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--dark);
-    color: var(--text);
-    font-family: 'Barlow', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: var(--sans);
     font-weight: 300;
     overflow-x: hidden;
+    line-height: 1.6;
   }
 
-  /* NAV */
+  /* ===== STAR CANVAS ===== */
+  #stars-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ===== NAVIGATION ===== */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
     z-index: 100;
+    padding: 1.5rem 3rem;
     display: flex;
-    justify-content: center;
-    gap: 2rem;
-    padding: 1rem 2rem;
-    background: rgba(4,11,16,0.85);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0,255,224,0.15);
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    background: rgba(10,10,15,0.6);
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+    transition: all 0.4s ease;
   }
 
-  nav a {
-    color: var(--neon);
+  nav.scrolled {
+    padding: 1rem 3rem;
+    background: rgba(10,10,15,0.9);
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-secondary);
     text-decoration: none;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1rem;
-    letter-spacing: 2px;
-    opacity: 0.7;
-    transition: opacity 0.2s;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 400;
+    transition: color 0.3s;
+    position: relative;
   }
-  nav a:hover { opacity: 1; }
 
-  /* SECTIONS */
-  section {
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s ease;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 5px;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--gold);
+    transition: all 0.3s;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    z-index: 1;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 7rem 8vw 5rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  /* HERO */
-  #hero {
     align-items: center;
     text-align: center;
-    background: radial-gradient(ellipse at center, #0d2a35 0%, var(--dark) 70%);
+    padding: 2rem;
   }
 
-  .atom {
-    position: relative;
-    width: 260px;
-    height: 260px;
-    margin: 0 auto 3rem;
-  }
-
-  .nucleus {
+  .hero-glow {
     position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
     top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    width: 50px; height: 50px;
-    background: radial-gradient(circle, #ff9e00, var(--danger));
-    border-radius: 50%;
-    box-shadow: 0 0 30px #ff3c3c, 0 0 60px rgba(255,60,60,0.4);
-    animation: pulse 2s ease-in-out infinite;
+    transform: translate(-50%, -50%);
+    animation: pulseGlow 6s ease-in-out infinite;
   }
 
-  @keyframes pulse {
-    0%,100% { transform: translate(-50%,-50%) scale(1); box-shadow: 0 0 30px #ff3c3c, 0 0 60px rgba(255,60,60,0.4); }
-    50% { transform: translate(-50%,-50%) scale(1.15); box-shadow: 0 0 50px #ff3c3c, 0 0 100px rgba(255,60,60,0.6); }
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
   }
 
-  .orbit {
-    position: absolute;
-    top: 50%; left: 50%;
-    border: 1px solid rgba(0,255,224,0.35);
-    border-radius: 50%;
-    transform-origin: 0 0;
-  }
-
-  .orbit-1 { width: 120px; height: 60px; margin: -30px 0 0 -60px; animation: spin1 3s linear infinite; }
-  .orbit-2 { width: 160px; height: 70px; margin: -35px 0 0 -80px; animation: spin2 4s linear infinite; }
-  .orbit-3 { width: 200px; height: 80px; margin: -40px 0 0 -100px; animation: spin3 5s linear infinite; }
-
-  @keyframes spin1 { to { transform: rotate(360deg); } }
-  @keyframes spin2 { to { transform: rotate(-360deg); } }
-  @keyframes spin3 { to { transform: rotate(360deg); } }
-
-  .electron {
-    position: absolute;
-    width: 10px; height: 10px;
-    background: var(--neon);
-    border-radius: 50%;
-    box-shadow: 0 0 12px var(--neon);
-    top: -5px; left: 50%; margin-left: -5px;
+  .hero-badge {
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 2rem;
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeUp 1s 0.3s forwards;
   }
 
   .hero-title {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--serif);
     font-size: clamp(3.5rem, 10vw, 8rem);
-    line-height: 0.9;
-    letter-spacing: 4px;
-    color: white;
-    text-shadow: 0 0 40px rgba(0,255,224,0.3);
-    animation: fadeUp 1s ease both;
-  }
-
-  .hero-title span { color: var(--neon); }
-
-  .hero-sub {
-    font-size: 1.1rem;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-    opacity: 0.5;
-    margin-top: 1rem;
-    animation: fadeUp 1s 0.2s ease both;
-  }
-
-  .scroll-hint {
-    position: absolute;
-    bottom: 2rem; left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Bebas Neue';
-    letter-spacing: 3px;
-    font-size: 0.8rem;
-    opacity: 0.3;
-    animation: bounce 2s ease-in-out infinite;
-  }
-
-  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
-
-  /* SECTION TITLES */
-  .section-tag {
-    font-family: 'Bebas Neue';
-    letter-spacing: 4px;
-    font-size: 0.85rem;
-    color: var(--neon);
-    opacity: 0.7;
-    margin-bottom: 0.5rem;
-  }
-
-  h2 {
-    font-family: 'Bebas Neue';
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    letter-spacing: 2px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--text-primary);
     line-height: 1;
-    margin-bottom: 2rem;
-    color: white;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.6s forwards;
   }
 
-  p { line-height: 1.8; opacity: 0.8; max-width: 680px; font-size: 1.05rem; }
-
-  /* QUE ES */
-  #que-es {
-    background: linear-gradient(135deg, var(--dark) 0%, #071820 100%);
+  .hero-title span {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dim));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
-  .split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
+  .hero-tagline {
+    font-family: var(--serif);
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 1s 0.9s forwards;
   }
 
-  .fact-card {
-    background: rgba(0,255,224,0.04);
-    border: 1px solid rgba(0,255,224,0.15);
-    border-radius: 4px;
-    padding: 1.8rem;
+  .hero-cta {
+    display: inline-block;
+    padding: 1rem 3rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: all 0.4s ease;
+    opacity: 0;
+    animation: fadeUp 1s 1.2s forwards;
     position: relative;
     overflow: hidden;
   }
 
-  .fact-card::before {
+  .hero-cta::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--gold);
+    transition: left 0.4s ease;
+    z-index: -1;
+  }
+
+  .hero-cta:hover {
+    color: var(--bg-dark);
+  }
+
+  .hero-cta:hover::before {
+    left: 0;
+  }
+
+  .hero-scroll-indicator {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0;
+    animation: fadeUp 1s 1.5s forwards;
+  }
+
+  .hero-scroll-indicator span {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold-dim), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== SECTIONS ===== */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 8rem 2rem;
+  }
+
+  .section-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 300;
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+    line-height: 1.2;
+  }
+
+  .section-text {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    max-width: 650px;
+    line-height: 1.8;
+  }
+
+  /* ===== ABOUT ===== */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    margin-top: 4rem;
+  }
+
+  .about-visual {
+    position: relative;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-circle {
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.15);
+    position: relative;
+    animation: rotateCircle 30s linear infinite;
+  }
+
+  .about-circle::before {
+    content: '✦';
+    position: absolute;
+    top: -8px; left: 50%;
+    transform: translateX(-50%);
+    color: var(--gold);
+    font-size: 0.8rem;
+  }
+
+  .about-circle-inner {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.08);
+    animation: rotateCircle 20s linear infinite reverse;
+  }
+
+  .about-circle-inner::before {
+    content: '✦';
+    position: absolute;
+    bottom: -8px; left: 50%;
+    transform: translateX(-50%);
+    color: var(--gold-dim);
+    font-size: 0.6rem;
+  }
+
+  .about-center-text {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  @keyframes rotateCircle {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  /* ===== FRAGRANCES ===== */
+  .fragrances-section {
+    background: linear-gradient(180deg, var(--bg-dark) 0%, #0d0d14 50%, var(--bg-dark) 100%);
+  }
+
+  .fragrances-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .fragrance-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(201,168,76,0.06);
+    padding: 3rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    cursor: default;
+  }
+
+  .fragrance-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0;
-    width: 3px; height: 100%;
-    background: var(--neon);
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--card-accent, var(--gold)), transparent);
+    opacity: 0;
+    transition: opacity 0.5s;
   }
 
-  .fact-card h3 {
-    font-family: 'Bebas Neue';
-    font-size: 1.3rem;
-    letter-spacing: 2px;
-    color: var(--neon);
+  .fragrance-card:hover {
+    background: var(--bg-card-hover);
+    border-color: rgba(201,168,76,0.12);
+    transform: translateY(-4px);
+  }
+
+  .fragrance-card:hover::before { opacity: 1; }
+
+  .fragrance-card:nth-child(1) { --card-accent: var(--miguel-color); }
+  .fragrance-card:nth-child(2) { --card-accent: var(--gabriel-color); }
+  .fragrance-card:nth-child(3) { --card-accent: var(--uriel-color); }
+  .fragrance-card:nth-child(4) { --card-accent: var(--abadon-color); }
+
+  .fragrance-number {
+    font-family: var(--serif);
+    font-size: 5rem;
+    font-weight: 300;
+    color: rgba(201,168,76,0.04);
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+    line-height: 1;
+  }
+
+  .fragrance-name {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--card-accent, var(--gold));
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  .fragrance-tags {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .fragrance-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding: 0.3rem 0.8rem;
+    border: 1px solid rgba(255,255,255,0.06);
+    font-weight: 400;
+  }
+
+  .fragrance-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+
+  .fragrance-notes-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
     margin-bottom: 0.5rem;
   }
 
-  .fact-card p { font-size: 0.95rem; }
-
-  .facts-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  /* FISION FUSION */
-  #reacciones {
-    background: var(--dark);
-  }
-
-  .reaction-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .reaction-card {
-    padding: 2.5rem;
-    border-radius: 4px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .reaction-card.fision {
-    background: rgba(255,60,60,0.06);
-    border: 1px solid rgba(255,60,60,0.3);
-  }
-
-  .reaction-card.fusion {
-    background: rgba(0,255,224,0.04);
-    border: 1px solid rgba(0,255,224,0.2);
-  }
-
-  .reaction-card h3 {
-    font-family: 'Bebas Neue';
-    font-size: 2rem;
-    letter-spacing: 3px;
-    margin-bottom: 1rem;
-  }
-
-  .fision h3 { color: var(--danger); }
-  .fusion h3 { color: var(--neon); }
-
-  .big-num {
-    font-family: 'Bebas Neue';
-    font-size: 4rem;
-    line-height: 1;
-    margin: 1rem 0;
-  }
-
-  .fision .big-num { color: var(--danger); }
-  .fusion .big-num { color: var(--neon); }
-
-  /* PLANTAS */
-  #plantas {
-    background: linear-gradient(180deg, var(--dark), #060f18);
-  }
-
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-
-  .stat-box {
-    text-align: center;
-    padding: 2rem 1rem;
-    border: 1px solid rgba(0,255,224,0.12);
-    border-radius: 4px;
-    background: rgba(0,255,224,0.03);
-    transition: border-color 0.3s, background 0.3s;
-  }
-
-  .stat-box:hover {
-    border-color: rgba(0,255,224,0.4);
-    background: rgba(0,255,224,0.07);
-  }
-
-  .stat-num {
-    font-family: 'Bebas Neue';
-    font-size: 3.5rem;
-    color: var(--gold);
-    display: block;
-    line-height: 1;
-  }
-
-  .stat-label {
-    font-size: 0.8rem;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    opacity: 0.6;
-    margin-top: 0.5rem;
-    display: block;
-  }
-
-  /* VENTAJAS / DESVENTAJAS */
-  #pros-cons {
-    background: var(--dark);
-  }
-
-  .pros-cons-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-top: 2rem;
-  }
-
-  .pros-list, .cons-list { list-style: none; }
-
-  .pros-list li, .cons-list li {
-    padding: 0.9rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+  .fragrance-notes {
+    color: var(--text-secondary);
+    font-family: var(--serif);
     font-size: 1rem;
-    opacity: 0.85;
-    display: flex;
-    gap: 1rem;
-    align-items: flex-start;
+    font-style: italic;
   }
 
-  .pros-list li::before {
-    content: '▲';
-    color: var(--neon);
-    font-size: 0.7rem;
-    margin-top: 4px;
-    flex-shrink: 0;
-  }
-
-  .cons-list li::before {
-    content: '▼';
-    color: var(--danger);
-    font-size: 0.7rem;
-    margin-top: 4px;
-    flex-shrink: 0;
-  }
-
-  .col-title {
-    font-family: 'Bebas Neue';
-    font-size: 1.5rem;
-    letter-spacing: 3px;
-    margin-bottom: 1rem;
-  }
-
-  .pros .col-title { color: var(--neon); }
-  .cons .col-title { color: var(--danger); }
-
-  /* FUTURO */
-  #futuro {
-    background: radial-gradient(ellipse at bottom, #0a1f2e 0%, var(--dark) 70%);
+  /* ===== PRICE COMPARISON ===== */
+  .price-section {
     text-align: center;
-    align-items: center;
   }
 
-  #futuro p { text-align: left; max-width: 700px; }
+  .price-comparison {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 4rem;
+    flex-wrap: wrap;
+  }
 
-  .glow-box {
-    margin-top: 3rem;
-    padding: 2.5rem 3rem;
-    border: 1px solid rgba(0,255,224,0.25);
-    border-radius: 4px;
-    background: rgba(0,255,224,0.04);
-    max-width: 700px;
-    text-align: left;
+  .price-col {
+    padding: 3rem 2.5rem;
+    text-align: center;
+    flex: 1;
+    min-width: 250px;
+    max-width: 320px;
+    border: 1px solid rgba(255,255,255,0.04);
+    background: var(--bg-card);
     position: relative;
+    transition: all 0.4s;
   }
 
-  .glow-box::after {
-    content: '';
+  .price-col.featured {
+    border-color: var(--gold);
+    background: linear-gradient(180deg, rgba(201,168,76,0.06) 0%, var(--bg-card) 100%);
+    transform: scale(1.05);
+  }
+
+  .price-col.featured .price-badge {
     position: absolute;
-    inset: -1px;
-    border-radius: 4px;
-    background: linear-gradient(135deg, rgba(0,255,224,0.15), transparent, rgba(0,255,224,0.05));
-    pointer-events: none;
+    top: -12px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--bg-dark);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.35rem 1.2rem;
+    font-weight: 600;
+    white-space: nowrap;
   }
 
-  .glow-box h3 {
-    font-family: 'Bebas Neue';
-    font-size: 1.5rem;
-    letter-spacing: 3px;
-    color: var(--neon);
+  .price-type {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
     margin-bottom: 1rem;
   }
 
-  /* BG GRID */
-  .bg-grid {
-    position: absolute;
-    inset: 0;
-    background-image: 
-      linear-gradient(rgba(0,255,224,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,255,224,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none;
+  .price-amount {
+    font-family: var(--serif);
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
   }
 
-  /* PROGRESS BARS */
-  .bar-wrap { margin-top: 2rem; }
-  .bar-item { margin-bottom: 1.2rem; }
-  .bar-header { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.4rem; opacity: 0.7; }
-  .bar-bg { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
-  .bar-fill { height: 100%; border-radius: 3px; animation: fillBar 1.5s ease forwards; }
-  @keyframes fillBar { from{width:0} }
+  .price-col.featured .price-amount {
+    color: var(--gold);
+  }
 
-  @media (max-width: 768px) {
-    .split, .reaction-grid, .pros-cons-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .stats-row { grid-template-columns: repeat(2,1fr); }
-    section { padding: 6rem 5vw 4rem; }
+  .price-unit {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  .price-detail {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* ===== VALUES ===== */
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 4rem;
+  }
+
+  .value-item {
+    padding: 2rem;
+    border-left: 1px solid rgba(201,168,76,0.15);
+    transition: all 0.3s;
+  }
+
+  .value-item:hover {
+    border-left-color: var(--gold);
+    background: rgba(201,168,76,0.02);
+  }
+
+  .value-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .value-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    font-weight: 400;
+  }
+
+  .value-desc {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+
+  /* ===== FOOTER ===== */
+  footer {
+    position: relative;
+    z-index: 1;
+    padding: 4rem 2rem;
+    border-top: 1px solid rgba(201,168,76,0.08);
+    text-align: center;
+  }
+
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .footer-slogan {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-copy {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* ===== DIVIDERS ===== */
+  .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  .divider-line {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+  }
+
+  .divider-diamond {
+    color: var(--gold-dim);
+    font-size: 0.6rem;
+  }
+
+  /* ===== SCROLL REVEAL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
+
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      background: rgba(10,10,15,0.95);
+      backdrop-filter: blur(20px);
+      padding: 2rem;
+      gap: 1.5rem;
+      border-bottom: 1px solid rgba(201,168,76,0.08);
+    }
+
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .about-visual { height: 280px; }
+    .fragrances-grid { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: 1fr; }
+    .price-col.featured { transform: scale(1); }
+
+    section { padding: 5rem 1.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-title { letter-spacing: 0.03em; }
+    .fragrance-card { padding: 2rem 1.5rem; }
+    .price-comparison { gap: 1rem; }
+    .price-col { padding: 2rem 1.5rem; min-width: 100%; }
   }
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="#hero">INICIO</a>
-  <a href="#que-es">¿QUÉ ES?</a>
-  <a href="#reacciones">REACCIONES</a>
-  <a href="#plantas">PLANTAS</a>
-  <a href="#pros-cons">PRO / CONTRA</a>
-  <a href="#futuro">FUTURO</a>
+<canvas id="stars-canvas"></canvas>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <div class="nav-logo">Arcanglus</div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">Nosotros</a></li>
+    <li><a href="#fragrances">Fragancias</a></li>
+    <li><a href="#prices">Precios</a></li>
+    <li><a href="#values">Valores</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
-<section id="hero">
-  <div class="bg-grid"></div>
-  <div class="atom">
-    <div class="nucleus"></div>
-    <div class="orbit orbit-1"><div class="electron"></div></div>
-    <div class="orbit orbit-2"><div class="electron"></div></div>
-    <div class="orbit orbit-3"><div class="electron"></div></div>
-  </div>
-  <h1 class="hero-title">ENERGÍA<br><span>NUCLEAR</span></h1>
-  <p class="hero-sub">El poder del átomo al servicio de la humanidad</p>
-  <div class="scroll-hint">↓ EXPLORAR ↓</div>
-</section>
-
-<!-- QUE ES -->
-<section id="que-es">
-  <div class="split">
-    <div>
-      <p class="section-tag">// FUNDAMENTOS</p>
-      <h2>¿QUÉ ES LA ENERGÍA NUCLEAR?</h2>
-      <p>La energía nuclear es la energía contenida en el núcleo de los átomos. Se libera cuando los núcleos atómicos se dividen (fisión) o se unen (fusión), produciendo cantidades masivas de energía a través de la ecuación de Einstein: <strong style="color:var(--neon)">E = mc²</strong>.</p>
-      <p style="margin-top:1rem;">Un gramo de uranio puede liberar tanta energía como la combustión de <strong style="color:var(--gold)">3 toneladas de carbón</strong>, sin emisiones directas de CO₂ durante la operación.</p>
-    </div>
-    <div class="facts-grid">
-      <div class="fact-card">
-        <h3>⚛ El Núcleo Atómico</h3>
-        <p>Formado por protones y neutrones, el núcleo ocupa un espacio minúsculo pero concentra el 99,97% de la masa del átomo.</p>
-      </div>
-      <div class="fact-card">
-        <h3>⚡ Densidad Energética</h3>
-        <p>La energía nuclear tiene una densidad 1 millón de veces superior a los combustibles fósiles convencionales.</p>
-      </div>
-      <div class="fact-card">
-        <h3>🌍 Baja Huella de Carbono</h3>
-        <p>Con 12 g CO₂eq/kWh, la nuclear emite menos CO₂ por unidad de energía que el solar, el eólico y el gas.</p>
-      </div>
-    </div>
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-badge">Perfumería mexicana de autor</div>
+  <h1 class="hero-title"><span>Arcanglus</span></h1>
+  <p class="hero-tagline">Fragancias de lujo real, al alcance de todos.</p>
+  <a href="#fragrances" class="hero-cta">Descubre las fragancias</a>
+  <div class="hero-scroll-indicator">
+    <span>Explora</span>
+    <div class="scroll-line"></div>
   </div>
 </section>
 
-<!-- REACCIONES -->
-<section id="reacciones">
-  <div class="bg-grid"></div>
-  <p class="section-tag">// PROCESOS</p>
-  <h2>FISIÓN VS. FUSIÓN</h2>
-  <div class="reaction-grid">
-    <div class="reaction-card fision">
-      <h3>⚡ FISIÓN NUCLEAR</h3>
-      <p>Un neutrón impacta un núcleo pesado (Uranio-235 o Plutonio-239), dividiéndolo en dos núcleos más pequeños y liberando energía y más neutrones que mantienen la reacción en cadena.</p>
-      <div class="big-num">200 MeV</div>
-      <p style="opacity:0.6;font-size:0.9rem;">Energía liberada por átomo de U-235</p>
-      <div class="bar-wrap">
-        <div class="bar-item">
-          <div class="bar-header"><span>Uranio-235</span><span>Comercial</span></div>
-          <div class="bar-bg"><div class="bar-fill" style="width:90%;background:var(--danger)"></div></div>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-container">
+    <div class="reveal">
+      <div class="section-label">Nuestra esencia</div>
+      <h2 class="section-title">El poder de lo celestial,<br>en cada gota</h2>
+    </div>
+    <div class="about-grid">
+      <div class="reveal">
+        <p class="section-text">
+          Arcanglus es una perfumería mexicana de autor que produce y vende fragancias de alta calidad a precios accesibles. Nuestra filosofía es simple: no deberías tener que pagar el nombre de una marca para oler extraordinario.
+        </p>
+        <br>
+        <p class="section-text">
+          El nombre fusiona "arcángel" con una identidad propia única. Los arcángeles son figuras de poder, misterio y presencia — exactamente lo que una buena fragancia debe evocar. Cada perfume lleva el nombre de un ser celestial, con una personalidad aromática que refleja su esencia.
+        </p>
+      </div>
+      <div class="about-visual reveal">
+        <div class="about-circle">
+          <div class="about-circle-inner"></div>
         </div>
-        <div class="bar-item">
-          <div class="bar-header"><span>Plutonio-239</span><span>Militar / Reactores</span></div>
-          <div class="bar-bg"><div class="bar-fill" style="width:70%;background:#ff7a3c"></div></div>
-        </div>
-      </div>
-    </div>
-    <div class="reaction-card fusion">
-      <h3>☀ FUSIÓN NUCLEAR</h3>
-      <p>Dos núcleos ligeros (deuterio y tritio) se unen bajo presión y temperatura extremas formando helio, un neutrón y cantidades enormes de energía. Es la misma reacción que alimenta el Sol.</p>
-      <div class="big-num">17.6 MeV</div>
-      <p style="opacity:0.6;font-size:0.9rem;">Energía por reacción D-T (mucho más eficiente por masa)</p>
-      <div class="bar-wrap">
-        <div class="bar-item">
-          <div class="bar-header"><span>Disponibilidad de combustible</span><span>Casi ilimitada</span></div>
-          <div class="bar-bg"><div class="bar-fill" style="width:95%;background:var(--neon)"></div></div>
-        </div>
-        <div class="bar-item">
-          <div class="bar-header"><span>Desarrollo tecnológico</span><span>En progreso</span></div>
-          <div class="bar-bg"><div class="bar-fill" style="width:40%;background:rgba(0,255,224,0.6)"></div></div>
-        </div>
+        <div class="about-center-text">✦</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PLANTAS -->
-<section id="plantas">
-  <p class="section-tag">// DATOS GLOBALES</p>
-  <h2>PLANTAS NUCLEARES EN EL MUNDO</h2>
-  <p>Las centrales nucleares generan electricidad calentando vapor para mover turbinas. A diferencia de las plantas de carbón, no queman combustible; usan calor generado por la fisión controlada dentro del reactor.</p>
-  <div class="stats-row">
-    <div class="stat-box">
-      <span class="stat-num">440</span>
-      <span class="stat-label">Reactores operativos</span>
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-diamond">◆</span>
+  <div class="divider-line"></div>
+</div>
+
+<!-- FRAGRANCES -->
+<section id="fragrances" class="fragrances-section">
+  <div class="section-container">
+    <div class="reveal" style="text-align:center; margin-bottom: 1rem;">
+      <div class="section-label">La colección</div>
+      <h2 class="section-title">Cuatro seres. Cuatro esencias.</h2>
     </div>
-    <div class="stat-box">
-      <span class="stat-num">10%</span>
-      <span class="stat-label">Electricidad mundial</span>
-    </div>
-    <div class="stat-box">
-      <span class="stat-num">32</span>
-      <span class="stat-label">Países con nuclear</span>
-    </div>
-    <div class="stat-box">
-      <span class="stat-num">60+</span>
-      <span class="stat-label">Reactores en construcción</span>
-    </div>
-  </div>
-  <div class="bar-wrap" style="margin-top:3rem;max-width:700px;">
-    <p style="font-family:'Bebas Neue';letter-spacing:2px;font-size:1.1rem;color:var(--neon);margin-bottom:1rem;">PRODUCCIÓN POR PAÍS (% de su electricidad)</p>
-    <div class="bar-item">
-      <div class="bar-header"><span>Francia</span><span>70%</span></div>
-      <div class="bar-bg"><div class="bar-fill" style="width:70%;background:linear-gradient(90deg,var(--neon),rgba(0,255,224,0.4))"></div></div>
-    </div>
-    <div class="bar-item">
-      <div class="bar-header"><span>Eslovaquia</span><span>57%</span></div>
-      <div class="bar-bg"><div class="bar-fill" style="width:57%;background:linear-gradient(90deg,var(--neon),rgba(0,255,224,0.4))"></div></div>
-    </div>
-    <div class="bar-item">
-      <div class="bar-header"><span>Ucrania</span><span>55%</span></div>
-      <div class="bar-bg"><div class="bar-fill" style="width:55%;background:linear-gradient(90deg,var(--neon),rgba(0,255,224,0.4))"></div></div>
-    </div>
-    <div class="bar-item">
-      <div class="bar-header"><span>EE.UU.</span><span>19%</span></div>
-      <div class="bar-bg"><div class="bar-fill" style="width:19%;background:linear-gradient(90deg,var(--neon),rgba(0,255,224,0.4))"></div></div>
-    </div>
-    <div class="bar-item">
-      <div class="bar-header"><span>China</span><span>5%</span></div>
-      <div class="bar-bg"><div class="bar-fill" style="width:5%;background:linear-gradient(90deg,var(--neon),rgba(0,255,224,0.4))"></div></div>
+
+    <div class="fragrances-grid">
+      <!-- Miguel -->
+      <div class="fragrance-card reveal">
+        <div class="fragrance-number">I</div>
+        <h3 class="fragrance-name">Miguel</h3>
+        <div class="fragrance-tags">
+          <span class="fragrance-tag">Dulce</span>
+          <span class="fragrance-tag">Cálido</span>
+          <span class="fragrance-tag">Luminoso</span>
+        </div>
+        <p class="fragrance-desc">
+          Inspirado en el arcángel guerrero de luz, Miguel es una fragancia dulce y envolvente. Para quien quiere dejar huella sin gritar.
+        </p>
+        <div class="fragrance-notes-label">Notas principales</div>
+        <div class="fragrance-notes">Vainilla · Ámbar dorado · Especias suaves</div>
+      </div>
+
+      <!-- Gabriel -->
+      <div class="fragrance-card reveal">
+        <div class="fragrance-number">II</div>
+        <h3 class="fragrance-name">Gabriel</h3>
+        <div class="fragrance-tags">
+          <span class="fragrance-tag">Dulce</span>
+          <span class="fragrance-tag">Etéreo</span>
+          <span class="fragrance-tag">Sofisticado</span>
+        </div>
+        <p class="fragrance-desc">
+          Gabriel es el mensajero celestial, y su fragancia lo refleja: dulce pero refinada, como una promesa susurrada. Elegancia sin estridencias.
+        </p>
+        <div class="fragrance-notes-label">Notas principales</div>
+        <div class="fragrance-notes">Flores blancas · Azúcar suave · Almizcle cremoso</div>
+      </div>
+
+      <!-- Uriel -->
+      <div class="fragrance-card reveal">
+        <div class="fragrance-number">III</div>
+        <h3 class="fragrance-name">Uriel</h3>
+        <div class="fragrance-tags">
+          <span class="fragrance-tag">Fresco</span>
+          <span class="fragrance-tag">Limpio</span>
+          <span class="fragrance-tag">Sereno</span>
+        </div>
+        <p class="fragrance-desc">
+          El arcángel de la sabiduría inspira una fragancia fresca y clara. Perfecto para el día a día y climas cálidos. Limpieza que se convierte en sofisticación.
+        </p>
+        <div class="fragrance-notes-label">Notas principales</div>
+        <div class="fragrance-notes">Cítricos brillantes · Notas verdes · Madera ligera</div>
+      </div>
+
+      <!-- Abadon -->
+      <div class="fragrance-card reveal">
+        <div class="fragrance-number">IV</div>
+        <h3 class="fragrance-name">Abadón</h3>
+        <div class="fragrance-tags">
+          <span class="fragrance-tag">Fresco</span>
+          <span class="fragrance-tag">Intenso</span>
+          <span class="fragrance-tag">Misterioso</span>
+        </div>
+        <p class="fragrance-desc">
+          El más oscuro de los cuatro. Fresco pero con carácter. Para quien quiere frescura sin perder intensidad ni presencia.
+        </p>
+        <div class="fragrance-notes-label">Notas principales</div>
+        <div class="fragrance-notes">Notas acuáticas · Madera fría · Almizcle seco</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PROS CONS -->
-<section id="pros-cons">
-  <p class="section-tag">// ANÁLISIS</p>
-  <h2>VENTAJAS Y DESVENTAJAS</h2>
-  <div class="pros-cons-grid">
-    <div class="pros">
-      <div class="col-title">VENTAJAS</div>
-      <ul class="pros-list">
-        <li>Baja emisión de gases de efecto invernadero durante la operación</li>
-        <li>Alta densidad energética con pequeñas cantidades de combustible</li>
-        <li>Generación continua y estable, independiente del clima</li>
-        <li>Ciclo de vida útil largo: 40–60 años por planta</li>
-        <li>Contribuye a la seguridad energética nacional</li>
-        <li>Menor uso de tierra que la energía solar o eólica por MW generado</li>
-      </ul>
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-diamond">◆</span>
+  <div class="divider-line"></div>
+</div>
+
+<!-- PRICES -->
+<section id="prices" class="price-section">
+  <div class="section-container">
+    <div class="reveal">
+      <div class="section-label">Comparativa de precios</div>
+      <h2 class="section-title">Lujo sin el sobreprecio</h2>
+      <p class="section-text" style="margin: 0 auto; text-align: center;">
+        Concentración Eau de Parfum y larga duración. Sin intermediarios. Formato de 50 ml.
+      </p>
     </div>
-    <div class="cons">
-      <div class="col-title">DESVENTAJAS</div>
-      <ul class="cons-list">
-        <li>Gestión de residuos radiactivos durante miles de años</li>
-        <li>Riesgo de accidentes: Chernóbil (1986), Fukushima (2011)</li>
-        <li>Alto costo de construcción y largos tiempos de edificación</li>
-        <li>Riesgo de proliferación de materiales nucleares</li>
-        <li>Fuerte oposición social y política en muchos países</li>
-        <li>Vulnerabilidad a desastres naturales o ataques</li>
-      </ul>
+
+    <div class="price-comparison reveal">
+      <div class="price-col">
+        <div class="price-type">Diseñador</div>
+        <div class="price-amount">$3,500</div>
+        <div class="price-unit">MXN / 50 ml</div>
+        <div class="price-detail">Marcas de diseñador internacional</div>
+      </div>
+
+      <div class="price-col">
+        <div class="price-type">Árabes</div>
+        <div class="price-amount">$1,800</div>
+        <div class="price-unit">MXN / 50 ml</div>
+        <div class="price-detail">Marcas árabes reconocidas</div>
+      </div>
+
+      <div class="price-col featured">
+        <div class="price-badge">Mejor valor</div>
+        <div class="price-type">Arcanglus</div>
+        <div class="price-amount">$450–$750</div>
+        <div class="price-unit">MXN / 50 ml</div>
+        <div class="price-detail">Eau de Parfum · Larga duración · Hecho en México</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FUTURO -->
-<section id="futuro">
-  <div class="bg-grid"></div>
-  <p class="section-tag">// HORIZONTE</p>
-  <h2>EL FUTURO DE LA<br>ENERGÍA NUCLEAR</h2>
-  <p>El mundo enfrenta una crisis climática que requiere fuentes de energía limpias y fiables. La nuclear está viviendo un renacimiento con nuevas tecnologías más seguras, pequeñas y flexibles.</p>
-  <div class="glow-box">
-    <h3>🔬 Tecnologías emergentes</h3>
-    <ul class="pros-list" style="margin-top:0.5rem;">
-      <li><strong style="color:white;">SMRs</strong> — Reactores modulares pequeños, más baratos y rápidos de construir</li>
-      <li><strong style="color:white;">Fusión comercial</strong> — ITER en Francia y startups como Commonwealth Fusion buscan hacer viable la fusión para 2040</li>
-      <li><strong style="color:white;">Torio</strong> — Combustible alternativo más abundante y con menos residuos</li>
-      <li><strong style="color:white;">Reactores de cuarta generación</strong> — Diseñados para ser inherentemente seguros y más eficientes</li>
-    </ul>
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-diamond">◆</span>
+  <div class="divider-line"></div>
+</div>
+
+<!-- VALUES -->
+<section id="values">
+  <div class="section-container">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-label">Lo que nos define</div>
+      <h2 class="section-title">Nuestros valores</h2>
+    </div>
+
+    <div class="values-grid">
+      <div class="value-item reveal">
+        <span class="value-icon">🇲🇽</span>
+        <h4 class="value-title">Hecho en México</h4>
+        <p class="value-desc">Formulamos y producimos cada fragancia localmente, con orgullo por nuestras raíces.</p>
+      </div>
+      <div class="value-item reveal">
+        <span class="value-icon">🐾</span>
+        <h4 class="value-title">Cruelty-Free</h4>
+        <p class="value-desc">Sin crueldad animal. Nunca lo hemos hecho y nunca lo haremos.</p>
+      </div>
+      <div class="value-item reveal">
+        <span class="value-icon">♻️</span>
+        <h4 class="value-title">Frascos reutilizables</h4>
+        <p class="value-desc">Diseñamos frascos elegantes pensados para durar y ser rellenados.</p>
+      </div>
+      <div class="value-item reveal">
+        <span class="value-icon">🧪</span>
+        <h4 class="value-title">Muestras disponibles</h4>
+        <p class="value-desc">Prueba antes de comprar. Estamos seguros de nuestros aromas.</p>
+      </div>
+      <div class="value-item reveal">
+        <span class="value-icon">🤝</span>
+        <h4 class="value-title">Directo al consumidor</h4>
+        <p class="value-desc">Sin intermediarios. Eso nos permite ofrecer precios justos sin sacrificar calidad.</p>
+      </div>
+      <div class="value-item reveal">
+        <span class="value-icon">✨</span>
+        <h4 class="value-title">Sin trucos</h4>
+        <p class="value-desc">Sin inflación de precio por imagen. Solo buen perfume, accesible para todos.</p>
+      </div>
+    </div>
   </div>
 </section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Arcanglus</div>
+  <div class="footer-slogan">"Fragancias de lujo real, al alcance de todos."</div>
+  <div class="footer-links">
+    <a href="#about">Nosotros</a>
+    <a href="#fragrances">Fragancias</a>
+    <a href="#prices">Precios</a>
+    <a href="#values">Valores</a>
+  </div>
+  <div class="footer-copy">© 2026 Arcanglus. Todos los derechos reservados.</div>
+</footer>
+
+<script>
+  // ===== STARS =====
+  const canvas = document.getElementById('stars-canvas');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+
+  function initStars() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    stars = [];
+    const count = Math.floor((canvas.width * canvas.height) / 8000);
+    for (let i = 0; i < count; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.2 + 0.2,
+        a: Math.random(),
+        speed: Math.random() * 0.005 + 0.002,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+  }
+
+  function drawStars(time) {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    stars.forEach(s => {
+      const alpha = 0.15 + 0.35 * (0.5 + 0.5 * Math.sin(time * s.speed + s.phase));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(201,168,76,${alpha})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(drawStars);
+  }
+
+  initStars();
+  requestAnimationFrame(drawStars);
+  window.addEventListener('resize', initStars);
+
+  // ===== NAV SCROLL =====
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // ===== HAMBURGER =====
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  // ===== SCROLL REVEAL =====
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
