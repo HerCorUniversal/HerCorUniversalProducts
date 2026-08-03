@@ -207,6 +207,23 @@
   .guide .g-open .arw{transition:transform .3s ease}
   .guide:hover .g-open .arw{transform:translateX(6px)}
 
+  /* Contacto */
+  .contact{display:flex;flex-direction:column;gap:30px;align-items:flex-start}
+  .contact-lead{font-size:clamp(20px,2.6vw,26px);color:var(--parchment);max-width:44ch;line-height:1.4}
+  .contact-mail{
+    display:inline-flex;align-items:center;gap:20px;flex-wrap:wrap;
+    border:1px solid var(--line-2);
+    padding:26px 34px;
+    background:linear-gradient(180deg,rgba(25,19,9,.6),transparent);
+    transition:border-color .3s ease, transform .3s ease, background .3s ease;
+  }
+  .contact-mail:hover{border-color:var(--amber);transform:translateY(-3px)}
+  .contact-mail:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+  .contact-mail .cm-label{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--coral)}
+  .contact-mail .cm-addr{font-family:"Cinzel",serif;font-weight:600;font-size:clamp(22px,3.4vw,34px);letter-spacing:.02em;color:var(--parchment)}
+  .contact-mail .cm-arw{font-family:"Space Mono",monospace;color:var(--amber);transition:transform .3s ease}
+  .contact-mail:hover .cm-arw{transform:translateX(6px)}
+
   /* Footer */
   footer{
     border-top:1px solid var(--line);
@@ -297,6 +314,22 @@
           <div class="g-title">Oraciones de<br>defensa</div>
           <p class="g-desc">Un recopilatorio de oraciones para protegerse y defenderse de los espíritus inmundos.</p>
           <span class="g-open">Abrir documento <span class="arw">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="wrap" id="contacto">
+      <div class="sec-head reveal">
+        <span class="sec-num">04</span>
+        <h2 class="sec-title">Contacto</h2>
+      </div>
+      <div class="rule reveal"></div>
+      <div class="contact reveal">
+        <p class="contact-lead">¿Necesitas orientación o quieres acercarte a la confederación? Escríbenos. Respondemos desde el anonimato.</p>
+        <a class="contact-mail" href="mailto:coesalvi@gmail.com">
+          <span class="cm-label">Correo</span>
+          <span class="cm-addr">coesalvi@gmail.com</span>
+          <span class="cm-arw">→</span>
         </a>
       </div>
     </section>
