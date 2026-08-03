@@ -224,6 +224,64 @@
   .contact-mail .cm-arw{font-family:"Space Mono",monospace;color:var(--amber);transition:transform .3s ease}
   .contact-mail:hover .cm-arw{transform:translateX(6px)}
 
+  /* Conversaciones */
+  .archive{display:grid;grid-template-columns:260px 1fr;gap:22px;align-items:start}
+  .conv-menu{display:flex;flex-direction:column;gap:8px}
+  .conv-item{
+    text-align:left;cursor:pointer;
+    background:transparent;color:var(--parchment);
+    border:1px solid var(--line);
+    border-left:2px solid transparent;
+    padding:16px 18px;
+    font-family:"Space Mono",monospace;
+    transition:border-color .25s ease, background .25s ease, transform .25s ease;
+    display:flex;flex-direction:column;gap:5px;
+  }
+  .conv-item:hover{background:var(--ink-2);transform:translateX(2px)}
+  .conv-item:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+  .conv-item.active{border-left-color:var(--amber);background:linear-gradient(90deg,rgba(228,135,13,.10),transparent)}
+  .conv-item .ci-title{font-size:14px;letter-spacing:.02em;color:var(--parchment);line-height:1.25}
+  .conv-item.active .ci-title{color:var(--amber)}
+  .conv-item .ci-meta{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+
+  .conv-panel{border:1px solid var(--line-2);background:#0B0906;overflow:hidden}
+  .conv-bar{
+    display:flex;align-items:center;gap:14px;
+    padding:14px 20px;border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,rgba(25,19,9,.7),transparent);
+  }
+  .conv-dots{display:flex;gap:7px}
+  .conv-dots i{width:10px;height:10px;border-radius:50%;display:block}
+  .conv-dots i:nth-child(1){background:var(--coral)}
+  .conv-dots i:nth-child(2){background:var(--amber)}
+  .conv-dots i:nth-child(3){background:var(--olive)}
+  .conv-bar .cb-title{font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.12em;color:var(--muted)}
+  .conv-parts{
+    padding:12px 24px;border-bottom:1px solid var(--line);
+    font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+    display:flex;flex-wrap:wrap;gap:6px 14px;
+  }
+  .conv-parts b{color:var(--parchment);font-weight:400}
+  .conv-log{
+    padding:26px 24px 30px;
+    font-family:"Space Mono",monospace;
+    font-size:14.5px;line-height:1.75;
+    max-height:520px;overflow-y:auto;
+  }
+  .conv-log::-webkit-scrollbar{width:9px}
+  .conv-log::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:9px}
+  .chat-line{margin-bottom:11px;color:var(--parchment)}
+  .chat-line .who{font-weight:700}
+  .chat-line .txt{color:#d8cfbe}
+
+  @media (max-width:760px){
+    .archive{grid-template-columns:1fr}
+    .conv-menu{flex-direction:row;overflow-x:auto;padding-bottom:6px}
+    .conv-item{min-width:220px;border-left:1px solid var(--line);border-top:2px solid transparent}
+    .conv-item.active{border-left-color:var(--line);border-top-color:var(--amber)}
+    .conv-log{font-size:13.5px}
+  }
+
   /* Footer */
   footer{
     border-top:1px solid var(--line);
@@ -318,9 +376,30 @@
       </div>
     </section>
 
-    <section class="wrap" id="contacto">
+    <section class="wrap" id="conversaciones">
       <div class="sec-head reveal">
         <span class="sec-num">04</span>
+        <h2 class="sec-title">Conversaciones</h2>
+        <span class="count-tag" id="convCount"></span>
+      </div>
+      <div class="rule reveal"></div>
+      <p class="reveal" style="color:var(--muted);max-width:56ch;margin-bottom:34px">Fragmentos de nuestras charlas internas. Elige una del menú para leerla.</p>
+      <div class="archive reveal">
+        <nav class="conv-menu" id="convMenu" aria-label="Selecciona una conversación"></nav>
+        <div class="conv-panel">
+          <div class="conv-bar">
+            <span class="conv-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span class="cb-title" id="convBarTitle">registro</span>
+          </div>
+          <div class="conv-parts" id="convParts"></div>
+          <div class="conv-log" id="convLog" tabindex="0"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" id="contacto">
+      <div class="sec-head reveal">
+        <span class="sec-num">05</span>
         <h2 class="sec-title">Contacto</h2>
       </div>
       <div class="rule reveal"></div>
@@ -359,6 +438,132 @@
       (m.founder ? '<span class="role">Fundador</span>' : '');
     roster.appendChild(el);
   });
+
+  // ----- Conversaciones -----
+  const speakerColors = {
+    Argos:"var(--amber)", Sica:"var(--coral)", Neo:"var(--olive)",
+    Ika:"#6EA9C4", Ultim:"#C98BE0", Lapsus:"#E58FB0", Beta:"#E0785C",
+    Hydra:"#5CC2A6", Xipe:"#8FA0F0", Rayo:"#F2C14E", Horus:"#E0A34B",
+    Pax:"#9BD16A", Gamma:"#7FD0C0", Codex:"#B98FF0", Lingus:"#D0A15C"
+  };
+  const conversations = [
+    {
+      id:"auromancia",
+      title:"¿Sica es realmente un brujo?",
+      topic:"Sobre la auromancia y la magia",
+      messages:[
+        ["Neo","Sica en verdad sos un brujo o solo te promocionas como tal?"],
+        ["Sica","dudas de mi?"],
+        ["Neo","un poco la verdad"],
+        ["Sica","que había de esperar de alguien que plageo el nombre de matrix"],
+        ["Neo","para tu información mi nombre es muy original"],
+        ["Ika","Por q se andan peleando?"],
+        ["Neo","creo que Sica no es un brujo"],
+        ["Ika","creo que Sica si es"],
+        ["Sica","ves? hasta la mexicana me da la razon"],
+        ["Neo","y puedes reconocer a otros brujos?"],
+        ["Sica","si"],
+        ["Neo","Como?"],
+        ["Sica","lo hago usando auromancia. Los brujos tienen un aura magnética a su alrededor, y cuando en realidad practican magia, es muy diferente de las otras personas"],
+        ["Ultim","Sica yo era ateo, creía que por no creer no me pasaría nada, me pudieron embrujar aunque no creía en eso"],
+        ["Sica","Interesante pregunta, y te daré dos respuestas. La primera es que, el hecho de no creer fervorosamente en algo, de por sí te protege en parte de eso. Pero en segundo, la magia, cómo cualquier otra cosa, existe aunque no creas en ella, y si alguien te ocasiona algo con fuerza, pasará, independientemente de que creas en ello o no. Y aunque te digo esto, también te digo que no te preocupes, en realidad no es común que alguien te haga un maleficio o use magia contra ti con la magnitud cómo para que algo importante te suceda."],
+        ["Ultim","interesante"],
+        ["Argos","Que esta ocurriendo aquí"],
+        ["Sica","nada, solo respondo preguntas de los demás"],
+        ["Argos","que siga así entonces"]
+      ]
+    },
+    {
+      id:"proyeccion",
+      title:"Una familia pide ayuda",
+      topic:"Proyección astral y auxilio",
+      messages:[
+        ["Lapsus","Requiero de ayuda"],
+        ["Beta","que pasa?"],
+        ["Lapsus","una familia me pidió ayuda"],
+        ["Beta","y que quieres que hagamos"],
+        ["Lapsus","necesito a 3"],
+        ["Hydra","yo t ayudo w"],
+        ["Lapsus","gracias"],
+        ["Lapsus","alguien mas?"],
+        ["Lapsus","entonces así, proyectarse astralmente, nos vemos en el centro de Querétaro"],
+        ["Beta","ok"],
+        ["Hydra","sip"],
+        ["Xipe","y que esta pasando ahora"],
+        ["Rayo","van a ayudar a Lp"],
+        ["Xipe","lol"],
+        ["Rayo","nos proyectamos para ayudarles"],
+        ["Argos","no"],
+        ["Xipe","hola, ok"],
+        ["Argos","tengan cuidado en eso, ellos lo hicieron bajo su responsabilidad, no os concierne a ustedes"],
+        ["Rayo","ok"]
+      ]
+    },
+    {
+      id:"espectros",
+      title:"¿Qué es un espectro?",
+      topic:"La naturaleza de los espectros",
+      messages:[
+        ["Horus","Sica acabo de ver algo sin forma afuera de mi casa, es un espectro?"],
+        ["Sica","Los espectros por naturaleza no tienen forma. Ya que vienen de un lugar que no comprende de formas, si no de tiempo y energía. La forma más pura de un espectro es como un cumulo de energía, que se mueve y solo se diferencia de otros según su intención. La forma que las personas le dan a los espectros se debe al hecho de que la mente tiene que racionalizar lo que no comprende, y la primera forma de esto es darle una forma. Por esto mismo un espectro puede ser visto de diferente forma por tres personas distintas. Claro que esto no es una complicación o algo malo, pero si es mejor entender que no son seres que tengan conciencia humana, y que solo se mueven según sus necesidades."],
+        ["Hydra","y desde cuando contestas tan rápido?"],
+        ["Sica","no tengo mucho que hacer"],
+        ["Hydra","no hay trabajo?"],
+        ["Sica","no"],
+        ["Hydra","que mal supongo"],
+        ["Argos","que haceis hablando a estas horas"],
+        ["Hydra","para mi es la tarde"],
+        ["Sica","para mi casi igual"],
+        ["Argos","cierto el horario"],
+        ["Pax","Sica crees en algún dios?"],
+        ["Sica","no tengo una religion, solo una fe"]
+      ]
+    }
+  ];
+
+  const convMenu = document.getElementById('convMenu');
+  const convLog = document.getElementById('convLog');
+  const convParts = document.getElementById('convParts');
+  const convBarTitle = document.getElementById('convBarTitle');
+  const convCount = document.getElementById('convCount');
+  convCount.textContent = conversations.length + (conversations.length===1?" registro":" registros");
+
+  function renderConversation(conv){
+    convBarTitle.textContent = "registro · " + conv.topic.toLowerCase();
+    const parts = [...new Set(conv.messages.map(m=>m[0]))];
+    convParts.innerHTML = "Participan: " + parts.map(p=>
+      '<b style="color:'+(speakerColors[p]||'var(--parchment)')+'">'+p+'</b>').join(" · ");
+    convLog.innerHTML = "";
+    conv.messages.forEach(([who,txt])=>{
+      const line = document.createElement('div');
+      line.className = 'chat-line';
+      const w = document.createElement('span');
+      w.className = 'who';
+      w.style.color = speakerColors[who] || 'var(--parchment)';
+      w.textContent = who + ': ';
+      const t = document.createElement('span');
+      t.className = 'txt';
+      t.textContent = txt;
+      line.appendChild(w); line.appendChild(t);
+      convLog.appendChild(line);
+    });
+  }
+
+  conversations.forEach((conv,i)=>{
+    const btn = document.createElement('button');
+    btn.className = 'conv-item' + (i===0?' active':'');
+    btn.type = 'button';
+    btn.innerHTML =
+      '<span class="ci-title">'+conv.title+'</span>' +
+      '<span class="ci-meta">'+[...new Set(conv.messages.map(m=>m[0]))].length+' voces · '+conv.messages.length+' mensajes</span>';
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.conv-item').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      renderConversation(conv);
+    });
+    convMenu.appendChild(btn);
+  });
+  if(conversations.length) renderConversation(conversations[0]);
 
   // Reveal on scroll
   const io = new IntersectionObserver((entries)=>{
